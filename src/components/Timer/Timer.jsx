@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const Timer = ({ rate, onPriceChange }) => {
+const Timer = ({ rate }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
+  const [total, setTotal] = useState(0);
 
   const intervalRef = useRef(null);
 
@@ -43,12 +44,12 @@ const Timer = ({ rate, onPriceChange }) => {
 
     const totalMinutes = time.hours * 60 + time.minutes + time.seconds / 60;
     const totalPrice = (totalMinutes / 60) * rate;
-    onPriceChange(totalPrice.toFixed(2));
+    setTotal(totalPrice.toFixed(2));
   };
   const handleReset = () => {
     setIsActive(false);
     setTime({ hours: 0, minutes: 0, seconds: 0 });
-    onPriceChange(0);
+    setTotal(0);
   };
 
   return (
@@ -61,7 +62,7 @@ const Timer = ({ rate, onPriceChange }) => {
       <button onClick={handleStart}>Start</button>
       <button onClick={handleStop}>Stop</button>
       <button onClick={handleReset}>Reset</button>
-      <div>Hourly Rate: {rate}</div>
+      <div>Total: {total}</div>
     </div>
   );
 };
