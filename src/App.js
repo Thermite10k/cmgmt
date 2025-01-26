@@ -1,6 +1,7 @@
 import { useState, useCallback, useActionState, useEffect } from "react";
 import "./App.css";
-import Timer from "./components/Timer/Timer";
+import classes from "./App.module.css";
+
 import ServiceTable from "./components/ServiceTable/ServiceTable";
 
 function App() {
@@ -38,9 +39,9 @@ function App() {
   }, [fetchDataHandler]);
 
   return (
-    <div className="App">
+    <div className={classes.app}>
       <center>
-        <h1>cmgmt v0.1</h1>
+        <h1>9 Billiards Club</h1>
       </center>
       {data.length && data.map((obj, index) => <ServiceTable service={obj} />)}
     </div>

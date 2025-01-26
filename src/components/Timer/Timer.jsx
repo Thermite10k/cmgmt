@@ -24,7 +24,7 @@ const Timer = ({ rate }) => {
             seconds: newSeconds % 60,
           };
         });
-      }, 1000);
+      }, 100);
     } else if (!isActive && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -54,11 +54,11 @@ const Timer = ({ rate }) => {
 
   return (
     <div>
-      <div>
+      <h2>
         {String(time.hours).padStart(2, "0")}:
         {String(time.minutes).padStart(2, "0")}:
         {String(time.seconds).padStart(2, "0")}
-      </div>
+      </h2>
       <button onClick={handleStart}>Start</button>
       <button onClick={handleStop}>Stop</button>
       <button onClick={handleReset}>Reset</button>

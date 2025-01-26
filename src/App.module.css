@@ -1,0 +1,47 @@
+/* CSS HEX
+--rich-black: #001524ff;
+--caribbean-current: #15616dff;
+--papaya-whip: #ffecd1ff;
+--emerald: #26c485ff;
+--phlox: #c04cfdff; */
+
+/* CSS HSL
+--rich-black: hsla(205, 100%, 7%, 1);
+--caribbean-current: hsla(188, 68%, 25%, 1);
+--papaya-whip: hsla(35, 100%, 91%, 1);
+--emerald: hsla(156, 68%, 46%, 1);
+--phlox: hsla(279, 98%, 65%, 1); */
+
+/* SCSS HEX
+$rich-black: #001524ff;
+$caribbean-current: #15616dff;
+$papaya-whip: #ffecd1ff;
+$emerald: #26c485ff;
+$phlox: #c04cfdff; */
+
+/* SCSS HSL */
+/* $rich-black: hsla(205, 100%, 7%, 1);
+$caribbean-current: hsla(188, 68%, 25%, 1);
+$papaya-whip: hsla(35, 100%, 91%, 1);
+$emerald: hsla(156, 68%, 46%, 1);
+$phlox: hsla(279, 98%, 65%, 1); */
+
+/* SCSS RGB */
+/* $rich-black: rgba(0, 21, 36, 1);
+$caribbean-current: rgba(21, 97, 109, 1);
+$papaya-whip: rgba(255, 236, 209, 1);
+$emerald: rgba(38, 196, 133, 1);
+$phlox: rgba(192, 76, 253, 1); */
+
+.app {
+  background-color: #001524;
+  margin: 0;
+  padding: 1rem;
+  min-height: 100vh;
+  font-family: Segoe UI ", Tahoma, Geneva, Verdana, sans-serif;";
+  color: #ffecd1;
+}
+h1 {
+  padding: 0;
+  margin: 0;
+}
