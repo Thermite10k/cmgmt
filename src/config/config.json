@@ -1,0 +1,10 @@
+{
+  "tables": {
+    "hourlyRate": 160,
+    "count": 5
+  },
+  "playStations": {
+    "hourlyRate": 100,
+    "count": 5
+  }
+}
