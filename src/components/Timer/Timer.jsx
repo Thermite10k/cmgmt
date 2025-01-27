@@ -24,7 +24,7 @@ const Timer = ({ rate }) => {
             seconds: newSeconds % 60,
           };
         });
-      }, 100);
+      }, 1000);
     } else if (!isActive && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
