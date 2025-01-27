@@ -1,9 +1,13 @@
 {
-  "tables": {
+  "Tables": {
+    "id": 0,
+    "name": "Table",
     "hourlyRate": 160,
     "count": 5
   },
-  "playStations": {
+  "Play Stations": {
+    "id": 1,
+    "name": "Play Station",
     "hourlyRate": 100,
     "count": 4
   }

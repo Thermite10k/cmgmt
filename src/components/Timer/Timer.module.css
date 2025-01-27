@@ -1,0 +1,64 @@
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+.timerContainer {
+  /* ffecd1  = 255 236 209*/
+  padding: 0.5rem 1.5rem;
+  width: 25%;
+  background-color: rgba(5, 5, 5, 0.4);
+  /* border: 1px solid #c04cfd; */
+  border-radius: 0.5rem;
+}
+.timerAndButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timerAndButtons h2 {
+  font-size: 50px;
+}
+.titleContainer {
+  font-size: 33px;
+  font-weight: 650;
+  margin-bottom: 1rem;
+}
+.buttonContainer {
+  display: flex;
+  width: 85%;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.total {
+  margin-top: 1rem;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.buttonStart {
+  background-color: #4caf50;
+}
+.buttonStop {
+  background-color: #f44336;
+}
+.buttonReset {
+  background-color: #ff9800;
+}
+.inputBox {
+  background-color: #333; /* Dark background */
+  border: 1px solid #555; /* Darker border */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  font-size: 16px; /* Increase font size */
+  border-radius: 4px; /* Rounded corners */
+  width: 100%; /* Full width */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus effect */
+}
+
+.inputBox:focus {
+  border-color: #26c485;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  outline: none;
+}

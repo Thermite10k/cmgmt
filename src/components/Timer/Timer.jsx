@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-
-const Timer = ({ rate }) => {
+import classes from "./Timer.module.css";
+import Button from "../UI/Button/Button";
+const Timer = ({ rate, title }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
   const [total, setTotal] = useState(0);
+  const [customRate, setCustomRate] = useState(rate);
 
   const intervalRef = useRef(null);
 
@@ -24,7 +26,7 @@ const Timer = ({ rate }) => {
             seconds: newSeconds % 60,
           };
         });
-      }, 1000);
+      }, 10);
     } else if (!isActive && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -43,7 +45,8 @@ const Timer = ({ rate }) => {
     setIsActive(false);
 
     const totalMinutes = time.hours * 60 + time.minutes + time.seconds / 60;
-    const totalPrice = (totalMinutes / 60) * rate;
+    const totalPrice =
+      (totalMinutes / 60) * (customRate > 0 ? customRate : rate);
     setTotal(totalPrice.toFixed(2));
   };
   const handleReset = () => {
@@ -52,17 +55,48 @@ const Timer = ({ rate }) => {
     setTotal(0);
   };
 
+  const customRateHandler = (event) => {
+    event.preventDefault();
+    setCustomRate(event.target.value);
+  };
+
+  const setNewRateHandler = (event) => {
+    event.preventDefault();
+    handleStop();
+  };
+
   return (
-    <div>
-      <h2>
-        {String(time.hours).padStart(2, "0")}:
-        {String(time.minutes).padStart(2, "0")}:
-        {String(time.seconds).padStart(2, "0")}
-      </h2>
-      <button onClick={handleStart}>Start</button>
-      <button onClick={handleStop}>Stop</button>
-      <button onClick={handleReset}>Reset</button>
-      <div>Total: {total}</div>
+    <div className={classes.timerContainer}>
+      <div className={`${classes.titleContainer}`}>{title}</div>
+      <div className={classes.timerAndButtons}>
+        <h2>
+          {String(time.hours).padStart(2, "0")}:
+          {String(time.minutes).padStart(2, "0")}:
+          {String(time.seconds).padStart(2, "0")}
+        </h2>
+        <div className={classes.buttonContainer}>
+          <Button className={classes.buttonStart} onClick={handleStart}>
+            Start
+          </Button>
+          <Button className={classes.buttonStop} onClick={handleStop}>
+            Stop
+          </Button>
+          <Button className={classes.buttonReset} onClick={handleReset}>
+            Reset
+          </Button>
+        </div>
+      </div>
+      <div className={classes.total}>Total: {total}</div>
+      <div>^</div>
+      <form onSubmit={(e) => setNewRateHandler(e)}>
+        <label>Custom rate</label>
+        <input
+          className={classes.inputBox}
+          onChange={(e) => customRateHandler(e)}
+          value={customRate}
+          type="text"
+        />
+      </form>
     </div>
   );
 };

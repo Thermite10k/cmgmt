@@ -3,6 +3,7 @@ import "./App.css";
 import classes from "./App.module.css";
 
 import ServiceTable from "./components/ServiceTable/ServiceTable";
+import Button from "./components/UI/Button/Button";
 
 function App() {
   const hourlyRate = 1100;
@@ -22,7 +23,9 @@ function App() {
       const loadedData = [];
       for (const key in data) {
         loadedData.push({
-          id: key,
+          id: data[key].id,
+          key: key,
+          name: data[key].name,
           hourlyRate: data[key].hourlyRate,
           count: data[key].count,
         });

@@ -1,0 +1,19 @@
+.Button {
+  background-color: #4caf50; /* Green background */
+  border: none; /* Remove borders */
+  color: #ffecd1; /* White text */
+  padding: 10px 18px; /* Some padding */
+  text-align: center; /* Centered text */
+  text-decoration: none; /* Remove underline */
+  font-size: 16px; /* Increase font size */
+  font-weight: 700;
+  margin: 4px 2px; /* Add some margin */
+  cursor: pointer; /* Pointer/hand icon */
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+  overflow: hidden;
+}
+
+.Button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}

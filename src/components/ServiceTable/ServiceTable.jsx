@@ -5,16 +5,13 @@ import classes from "./ServiceTable.module.css";
 const ServiceTable = ({ service }) => {
   return (
     <div className={classes.serviceContainer}>
-      <h1>{service.id}</h1>
+      <h1 className={classes.serviceTitle}>{service.key}</h1>
       <div className={classes.timerContainer}>
         {Array.from({ length: service.count }).map((_, index) => (
-          <div key={index}>
-            <h3>
-              {service.id} #{index + 1}
-            </h3>
-
-            <Timer rate={service.hourlyRate} />
-          </div>
+          <Timer
+            title={service.name + " #" + (index + 1)}
+            rate={service.hourlyRate}
+          />
         ))}
       </div>
     </div>
