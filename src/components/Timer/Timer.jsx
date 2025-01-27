@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import classes from "./Timer.module.css";
 import Button from "../UI/Button/Button";
+import buttonClasses from "./TimerButton.module.css";
 const Timer = ({ rate, title }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
@@ -26,7 +27,7 @@ const Timer = ({ rate, title }) => {
             seconds: newSeconds % 60,
           };
         });
-      }, 10);
+      }, 1000);
     } else if (!isActive && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -75,13 +76,13 @@ const Timer = ({ rate, title }) => {
           {String(time.seconds).padStart(2, "0")}
         </h2>
         <div className={classes.buttonContainer}>
-          <Button className={classes.buttonStart} onClick={handleStart}>
+          <Button className={buttonClasses.buttonStarts} onClick={handleStart}>
             Start
           </Button>
-          <Button className={classes.buttonStop} onClick={handleStop}>
+          <Button className={buttonClasses.buttonStops} onClick={handleStop}>
             Stop
           </Button>
-          <Button className={classes.buttonReset} onClick={handleReset}>
+          <Button className={buttonClasses.buttonResets} onClick={handleReset}>
             Reset
           </Button>
         </div>

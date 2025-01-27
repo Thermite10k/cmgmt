@@ -36,13 +36,13 @@ h3 {
   font-size: 20px;
   font-weight: bolder;
 }
-.buttonStart {
+.buttonStarts {
   background-color: #4caf50;
 }
-.buttonStop {
+.buttonStops {
   background-color: #f44336;
 }
-.buttonReset {
+.buttonResets {
   background-color: #ff9800;
 }
 .inputBox {
