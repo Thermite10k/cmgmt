@@ -36,15 +36,7 @@ h3 {
   font-size: 20px;
   font-weight: bolder;
 }
-.buttonStarts {
-  background-color: #4caf50;
-}
-.buttonStops {
-  background-color: #f44336;
-}
-.buttonResets {
-  background-color: #ff9800;
-}
+
 .inputBox {
   background-color: #333; /* Dark background */
   border: 1px solid #555; /* Darker border */

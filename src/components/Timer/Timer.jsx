@@ -38,7 +38,9 @@ const Timer = ({ rate, title }) => {
       }
     };
   }, [isActive]);
-
+  const addCommaSeparator = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   const handleStart = () => {
     setIsActive(true);
   };
@@ -48,7 +50,7 @@ const Timer = ({ rate, title }) => {
     const totalMinutes = time.hours * 60 + time.minutes + time.seconds / 60;
     const totalPrice =
       (totalMinutes / 60) * (customRate > 0 ? customRate : rate);
-    setTotal(totalPrice.toFixed(2));
+    setTotal(totalPrice.toFixed());
   };
   const handleReset = () => {
     setIsActive(false);
@@ -87,10 +89,10 @@ const Timer = ({ rate, title }) => {
           </Button>
         </div>
       </div>
-      <div className={classes.total}>Total: {total}</div>
-      <div>^</div>
+      <div className={classes.total}>Total: {addCommaSeparator(total)}</div>
+
       <form onSubmit={(e) => setNewRateHandler(e)}>
-        <label>Custom rate</label>
+        <label>Custom rate:</label>
         <input
           className={classes.inputBox}
           onChange={(e) => customRateHandler(e)}

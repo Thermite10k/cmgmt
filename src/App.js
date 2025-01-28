@@ -41,6 +41,16 @@ function App() {
     fetchDataHandler();
   }, [fetchDataHandler]);
 
+  useEffect(() => {
+    const reloadHandler = (event) => {
+      event.preventDefault();
+    };
+    window.addEventListener("beforeunload", reloadHandler);
+    return () => {
+      window.removeEventListener("beforeunload", reloadHandler);
+    };
+  }, []);
+
   return (
     <div className={classes.app}>
       <center>
