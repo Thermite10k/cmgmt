@@ -7,7 +7,8 @@ h3 {
   /* ffecd1  = 255 236 209*/
   padding: 0.5rem 1.5rem;
   width: 25%;
-  background-color: rgba(5, 5, 5, 0.4);
+  /* 26c585 = 38 196 133 */
+  background-color: rgba(38, 196, 133, 0.5);
   /* border: 1px solid #c04cfd; */
   border-radius: 0.5rem;
 }
