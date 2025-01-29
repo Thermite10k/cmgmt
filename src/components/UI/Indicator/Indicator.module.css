@@ -1,0 +1,13 @@
+.indicator {
+  width: 10px;
+  height: 10px;
+  background-color: #333; /* Dim color when not active */
+  border-radius: 50%; /* Make it a circle */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for the glow effect */
+}
+
+.indicator.active {
+  background-color: #4caf50; /* Neon green color when active */
+  box-shadow: 0 0 10px #4caf50, 0 0 20px #4caf50, 0 0 30px #4caf50,
+    0 0 40px #4caf50; /* Neon green glow */
+}

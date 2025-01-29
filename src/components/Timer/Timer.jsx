@@ -2,14 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import classes from "./Timer.module.css";
 import Button from "../UI/Button/Button";
 import buttonClasses from "./TimerButton.module.css";
+import Indicator from "../UI/Indicator/Indicator";
 const Timer = ({ rate, title }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
   const [total, setTotal] = useState(0);
   const [customRate, setCustomRate] = useState(rate);
+  const [finalRate, setFinalRate] = useState(rate);
   const [extra, setExtra] = useState(0);
   const [totalExtra, setTotalExtra] = useState(0);
   const [timeTotal, setTimeTotal] = useState(0);
+  const [updatePice, setUpdatePrice] = useState(0);
 
   const intervalRef = useRef(null);
   const extraRef = useRef(null);
@@ -59,20 +62,26 @@ const Timer = ({ rate, title }) => {
   const handleReset = () => {
     setIsActive(false);
     setTime({ hours: 0, minutes: 0, seconds: 0 });
+    setCustomRate(0);
+    setFinalRate(0);
     setTotal(0);
     setTotalExtra(0);
     setExtra(0);
     setTimeTotal(0);
+    setUpdatePrice(0);
     extraRef.current.value = 0;
   };
 
   const customRateHandler = (event) => {
     event.preventDefault();
+    setUpdatePrice(1);
     setCustomRate(+event.target.value);
   };
 
   const setNewRateHandler = (event) => {
     event.preventDefault();
+    setUpdatePrice(1);
+    setFinalRate(customRate);
     handleStop();
   };
 
@@ -83,10 +92,12 @@ const Timer = ({ rate, title }) => {
 
   const addExtraHandler = (event) => {
     event.preventDefault();
+    setUpdatePrice(1);
     setTotalExtra((prevVal) => +prevVal + +extra);
   };
   const getTotal = () => {
     setTotal(+timeTotal + +totalExtra);
+    setUpdatePrice(0);
   };
 
   return (
@@ -112,7 +123,7 @@ const Timer = ({ rate, title }) => {
       </div>
       <div className={classes.formContainer}>
         <form onSubmit={(e) => setNewRateHandler(e)}>
-          <label>Custom rate:</label>
+          <label>Custom rate: {finalRate || rate}</label>
           <input
             className={classes.inputBox}
             onChange={(e) => customRateHandler(e)}
@@ -136,6 +147,7 @@ const Timer = ({ rate, title }) => {
         <div>Time: {addCommaSeparator(timeTotal)}</div>
         <div>Extra fees: {addCommaSeparator(totalExtra)}</div>
       </div>
+      <Indicator isActive={`${updatePice ? "active" : ""}`} />
       <div className={classes.total}>Total: {addCommaSeparator(total)}</div>
     </div>
   );
