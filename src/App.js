@@ -21,7 +21,7 @@ function App() {
         throw new Error("Something went wrong!");
       }
       const data = await response.json();
-      console.log(data);
+
       const loadedData = [];
       for (const key in data) {
         loadedData.push({

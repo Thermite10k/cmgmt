@@ -12,7 +12,6 @@ const Timer = ({ rate, title }) => {
   const [extra, setExtra] = useState(0);
   const [totalExtra, setTotalExtra] = useState(0);
   const [timeTotal, setTimeTotal] = useState(0);
-  const [updatePice, setUpdatePrice] = useState(0);
 
   const intervalRef = useRef(null);
   const extraRef = useRef(null);
@@ -34,7 +33,7 @@ const Timer = ({ rate, title }) => {
             seconds: newSeconds % 60,
           };
         });
-      }, 1);
+      }, 1000);
     } else if (!isActive && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -68,19 +67,19 @@ const Timer = ({ rate, title }) => {
     setTotalExtra(0);
     setExtra(0);
     setTimeTotal(0);
-    setUpdatePrice(0);
+
     extraRef.current.value = 0;
   };
 
   const customRateHandler = (event) => {
     event.preventDefault();
-    setUpdatePrice(1);
+
     setCustomRate(+event.target.value);
   };
 
   const setNewRateHandler = (event) => {
     event.preventDefault();
-    setUpdatePrice(1);
+
     setFinalRate(customRate);
     handleStop();
   };
@@ -92,13 +91,14 @@ const Timer = ({ rate, title }) => {
 
   const addExtraHandler = (event) => {
     event.preventDefault();
-    setUpdatePrice(1);
+
     setTotalExtra((prevVal) => +prevVal + +extra);
   };
   const getTotal = () => {
     setTotal(+timeTotal + +totalExtra);
-    setUpdatePrice(0);
+    console.log("calculating total...");
   };
+  useEffect(() => getTotal(), [finalRate, timeTotal, totalExtra]);
 
   return (
     <div className={classes.timerContainer}>
@@ -123,7 +123,7 @@ const Timer = ({ rate, title }) => {
       </div>
       <div className={classes.formContainer}>
         <form onSubmit={(e) => setNewRateHandler(e)}>
-          <label>Custom rate: {finalRate || rate}</label>
+          <label>Custom rate: {addCommaSeparator(finalRate || rate)}</label>
           <input
             className={classes.inputBox}
             onChange={(e) => customRateHandler(e)}
@@ -132,7 +132,7 @@ const Timer = ({ rate, title }) => {
           />
         </form>
         <form onSubmit={(e) => addExtraHandler(e)}>
-          <label>Extras: {totalExtra}</label>
+          <label>Extras: {addCommaSeparator(totalExtra)}</label>
           <input
             className={classes.inputBox}
             ref={extraRef}
@@ -140,14 +140,12 @@ const Timer = ({ rate, title }) => {
           />
         </form>
       </div>
-      <Button className={classes.totalButton} onClick={getTotal}>
-        Calculate Total
-      </Button>
+
       <div className={classes.subTotals}>
         <div>Time: {addCommaSeparator(timeTotal)}</div>
         <div>Extra fees: {addCommaSeparator(totalExtra)}</div>
       </div>
-      <Indicator isActive={`${updatePice ? "active" : ""}`} />
+
       <div className={classes.total}>Total: {addCommaSeparator(total)}</div>
     </div>
   );
