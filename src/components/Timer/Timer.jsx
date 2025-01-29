@@ -146,7 +146,9 @@ const Timer = ({ rate, title }) => {
         <div>Extra fees: {addCommaSeparator(totalExtra)}</div>
       </div>
 
-      <div className={classes.total}>Total: {addCommaSeparator(total)}</div>
+      <div className={classes.total}>
+        Total: {addCommaSeparator(total)} Rials
+      </div>
     </div>
   );
 };
