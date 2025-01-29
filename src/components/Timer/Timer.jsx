@@ -7,8 +7,12 @@ const Timer = ({ rate, title }) => {
   const [isActive, setIsActive] = useState(false);
   const [total, setTotal] = useState(0);
   const [customRate, setCustomRate] = useState(rate);
+  const [extra, setExtra] = useState(0);
+  const [totalExtra, setTotalExtra] = useState(0);
+  const [timeTotal, setTimeTotal] = useState(0);
 
   const intervalRef = useRef(null);
+  const extraRef = useRef(null);
 
   useEffect(() => {
     let interval = null;
@@ -27,7 +31,7 @@ const Timer = ({ rate, title }) => {
             seconds: newSeconds % 60,
           };
         });
-      }, 1000);
+      }, 1);
     } else if (!isActive && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -48,24 +52,41 @@ const Timer = ({ rate, title }) => {
     setIsActive(false);
 
     const totalMinutes = time.hours * 60 + time.minutes + time.seconds / 60;
-    const totalPrice =
+    const totalTimePrice =
       (totalMinutes / 60) * (customRate > 0 ? customRate : rate);
-    setTotal(totalPrice.toFixed());
+    setTimeTotal(+totalTimePrice.toFixed());
   };
   const handleReset = () => {
     setIsActive(false);
     setTime({ hours: 0, minutes: 0, seconds: 0 });
     setTotal(0);
+    setTotalExtra(0);
+    setExtra(0);
+    setTimeTotal(0);
+    extraRef.current.value = 0;
   };
 
   const customRateHandler = (event) => {
     event.preventDefault();
-    setCustomRate(event.target.value);
+    setCustomRate(+event.target.value);
   };
 
   const setNewRateHandler = (event) => {
     event.preventDefault();
     handleStop();
+  };
+
+  const setExtraChangeHandle = (event) => {
+    event.preventDefault();
+    setExtra(+event.target.value);
+  };
+
+  const addExtraHandler = (event) => {
+    event.preventDefault();
+    setTotalExtra((prevVal) => +prevVal + +extra);
+  };
+  const getTotal = () => {
+    setTotal(+timeTotal + +totalExtra);
   };
 
   return (
@@ -78,28 +99,44 @@ const Timer = ({ rate, title }) => {
           {String(time.seconds).padStart(2, "0")}
         </h2>
         <div className={classes.buttonContainer}>
-          <Button className={buttonClasses.buttonStarts} onClick={handleStart}>
+          <Button className={buttonClasses.buttonStart} onClick={handleStart}>
             Start
           </Button>
-          <Button className={buttonClasses.buttonStops} onClick={handleStop}>
+          <Button className={buttonClasses.buttonStop} onClick={handleStop}>
             Stop
           </Button>
-          <Button className={buttonClasses.buttonResets} onClick={handleReset}>
+          <Button className={buttonClasses.buttonReset} onClick={handleReset}>
             Reset
           </Button>
         </div>
       </div>
+      <div className={classes.formContainer}>
+        <form onSubmit={(e) => setNewRateHandler(e)}>
+          <label>Custom rate:</label>
+          <input
+            className={classes.inputBox}
+            onChange={(e) => customRateHandler(e)}
+            value={customRate}
+            type="text"
+          />
+        </form>
+        <form onSubmit={(e) => addExtraHandler(e)}>
+          <label>Extras: {totalExtra}</label>
+          <input
+            className={classes.inputBox}
+            ref={extraRef}
+            onChange={(e) => setExtraChangeHandle(e)}
+          />
+        </form>
+      </div>
+      <Button className={classes.totalButton} onClick={getTotal}>
+        Calculate Total
+      </Button>
+      <div className={classes.subTotals}>
+        <div>Time: {addCommaSeparator(timeTotal)}</div>
+        <div>Extra fees: {addCommaSeparator(totalExtra)}</div>
+      </div>
       <div className={classes.total}>Total: {addCommaSeparator(total)}</div>
-
-      <form onSubmit={(e) => setNewRateHandler(e)}>
-        <label>Custom rate:</label>
-        <input
-          className={classes.inputBox}
-          onChange={(e) => customRateHandler(e)}
-          value={customRate}
-          type="text"
-        />
-      </form>
     </div>
   );
 };

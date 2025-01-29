@@ -15,11 +15,13 @@ function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("/config.json");
+      //const response = await fetch("http://localhost:8080/services");
+      const response = await fetch("config.json");
       if (!response.ok) {
         throw new Error("Something went wrong!");
       }
       const data = await response.json();
+      console.log(data);
       const loadedData = [];
       for (const key in data) {
         loadedData.push({

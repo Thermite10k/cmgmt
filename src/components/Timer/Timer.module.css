@@ -16,8 +16,16 @@ h3 {
   flex-direction: column;
   align-items: center;
 }
+
+.formContainer {
+  margin: 2rem 0 2rem 0;
+}
+
 .timerAndButtons h2 {
   font-size: 50px;
+}
+.subTotals {
+  margin: 1rem 0 1rem 0;
 }
 .titleContainer {
   font-size: 33px;
@@ -32,7 +40,6 @@ h3 {
   justify-content: center;
 }
 .total {
-  margin-top: 1rem;
   font-size: 20px;
   font-weight: bolder;
 }
@@ -53,4 +60,11 @@ h3 {
   border-color: #26c485;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
   outline: none;
+}
+
+.totalButton {
+  width: 100%;
+}
+.totalValue {
+  color: #26c485;
 }
