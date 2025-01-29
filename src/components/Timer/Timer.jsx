@@ -61,8 +61,8 @@ const Timer = ({ rate, title }) => {
   const handleReset = () => {
     setIsActive(false);
     setTime({ hours: 0, minutes: 0, seconds: 0 });
-    setCustomRate(0);
-    setFinalRate(0);
+    setCustomRate(rate);
+    setFinalRate(rate);
     setTotal(0);
     setTotalExtra(0);
     setExtra(0);
@@ -102,7 +102,9 @@ const Timer = ({ rate, title }) => {
 
   return (
     <div className={classes.timerContainer}>
-      <div className={`${classes.titleContainer}`}>{title}</div>
+      <div className={`${classes.titleContainer}`}>
+        {title} <Indicator isActive={`${isActive ? "active" : ""}`} />
+      </div>
       <div className={classes.timerAndButtons}>
         <h2>
           {String(time.hours).padStart(2, "0")}:
