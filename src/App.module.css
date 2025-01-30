@@ -36,7 +36,7 @@ $phlox: rgba(192, 76, 253, 1); */
 .app {
   background-color: #001524;
   margin: 0;
-  padding: 1rem;
+  padding: 1rem 3rem;
   min-height: 100vh;
   font-family: Segoe UI ", Tahoma, Geneva, Verdana, sans-serif;";
   color: #ffecd1;

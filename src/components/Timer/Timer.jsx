@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import classes from "./Timer.module.css";
 import Button from "../UI/Button/Button";
 import buttonClasses from "./TimerButton.module.css";
 import Indicator from "../UI/Indicator/Indicator";
-const Timer = ({ rate, title }) => {
+import { addCommaSeparator } from "../utils/addCommaSeparator";
+import { dataContext } from "../../contexts/appContext";
+const Timer = ({ rate, title, index, id }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
   const [total, setTotal] = useState(0);
@@ -12,7 +14,7 @@ const Timer = ({ rate, title }) => {
   const [extra, setExtra] = useState(0);
   const [totalExtra, setTotalExtra] = useState(0);
   const [timeTotal, setTimeTotal] = useState(0);
-
+  const { setStoredData } = useContext(dataContext);
   const intervalRef = useRef(null);
   const extraRef = useRef(null);
 
@@ -33,7 +35,7 @@ const Timer = ({ rate, title }) => {
             seconds: newSeconds % 60,
           };
         });
-      }, 1000);
+      }, 1);
     } else if (!isActive && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -44,9 +46,7 @@ const Timer = ({ rate, title }) => {
       }
     };
   }, [isActive]);
-  const addCommaSeparator = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
+
   const handleStart = () => {
     setIsActive(true);
   };
@@ -59,6 +59,13 @@ const Timer = ({ rate, title }) => {
     setTimeTotal(+totalTimePrice.toFixed());
   };
   const handleReset = () => {
+    setStoredData((prevData) => ({
+      ...prevData,
+      [id]: { ...prevData[id], amount: prevData[id].amount + +timeTotal },
+      2: { ...prevData[2], amount: prevData[2].amount + +totalExtra }, // 2 is the id for extras as described in context
+      total: prevData.total + +total,
+    }));
+
     setIsActive(false);
     setTime({ hours: 0, minutes: 0, seconds: 0 });
     setCustomRate(rate);
@@ -96,14 +103,14 @@ const Timer = ({ rate, title }) => {
   };
   const getTotal = () => {
     setTotal(+timeTotal + +totalExtra);
-    console.log("calculating total...");
   };
   useEffect(() => getTotal(), [finalRate, timeTotal, totalExtra]);
 
   return (
     <div className={classes.timerContainer}>
       <div className={`${classes.titleContainer}`}>
-        {title} <Indicator isActive={`${isActive ? "active" : ""}`} />
+        {title} #{index}
+        <Indicator isActive={`${isActive ? "active" : ""}`} />
       </div>
       <div className={classes.timerAndButtons}>
         <h2>

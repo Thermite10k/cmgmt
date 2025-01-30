@@ -1,0 +1,37 @@
+.statsContainer {
+  background-color: #15616d;
+  background: linear-gradient(135deg, #1e1e1e, #2c3e50);
+  color: #ffecd1;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.statList {
+  padding: 0;
+  margin: 0;
+}
+.listItem {
+  display: flex;
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+.name {
+  font-size: 18px;
+  font-weight: 600;
+}
+.total {
+  width: fit-content;
+  margin: 1rem 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+.totalButton {
+  background-color: #ff9800;
+  transition: background-color 0.3s ease, box-shadow 0.3s;
+}
+.totalButton:hover {
+  background-color: #e68900;
+  box-shadow: 0 0 2px #ff9800, 0 0 5px #ff9800, 0 0 8px #ff9800;
+}

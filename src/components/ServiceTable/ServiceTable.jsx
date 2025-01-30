@@ -17,7 +17,9 @@ const ServiceTable = ({ service }) => {
         <div className={classes.timerContainer}>
           {Array.from({ length: service.count }).map((_, index) => (
             <Timer
-              title={service.name + " #" + (index + 1)}
+              title={service.name}
+              index={index + 1}
+              id={service.id}
               rate={service.hourlyRate}
             />
           ))}
