@@ -35,7 +35,7 @@ const Timer = ({ rate, title, index, id }) => {
             seconds: newSeconds % 60,
           };
         });
-      }, 1);
+      }, 1000);
     } else if (!isActive && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
