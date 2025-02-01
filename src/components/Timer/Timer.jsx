@@ -14,6 +14,7 @@ const Timer = ({ rate, title, index, id }) => {
   const [extra, setExtra] = useState(0);
   const [totalExtra, setTotalExtra] = useState(0);
   const [timeTotal, setTimeTotal] = useState(0);
+  const [saveChecked, setSaveChecked] = useState(true);
   const { setStoredData } = useContext(dataContext);
   const intervalRef = useRef(null);
   const extraRef = useRef(null);
@@ -59,12 +60,11 @@ const Timer = ({ rate, title, index, id }) => {
     setTimeTotal(+totalTimePrice.toFixed());
   };
   const handleReset = () => {
-    setStoredData((prevData) => ({
-      ...prevData,
-      [id]: { ...prevData[id], amount: prevData[id].amount + +timeTotal },
-      2: { ...prevData[2], amount: prevData[2].amount + +totalExtra }, // 2 is the id for extras as described in context
-      total: prevData.total + +total,
-    }));
+    if (saveChecked) {
+      save();
+    } else {
+      setSaveChecked(true);
+    }
 
     setIsActive(false);
     setTime({ hours: 0, minutes: 0, seconds: 0 });
@@ -76,6 +76,15 @@ const Timer = ({ rate, title, index, id }) => {
     setTimeTotal(0);
 
     extraRef.current.value = 0;
+  };
+
+  const save = () => {
+    setStoredData((prevData) => ({
+      ...prevData,
+      [id]: { ...prevData[id], amount: prevData[id].amount + +timeTotal },
+      2: { ...prevData[2], amount: prevData[2].amount + +totalExtra }, // 2 is the id for extras as described in context
+      total: prevData.total + +total,
+    }));
   };
 
   const customRateHandler = (event) => {
@@ -156,7 +165,17 @@ const Timer = ({ rate, title, index, id }) => {
       </div>
 
       <div className={classes.total}>
-        Total: {addCommaSeparator(total)} Rials
+        <div>Total: {addCommaSeparator(total)} Rials</div>
+        <div className={classes.saveResults}>
+          <label>Save? </label>
+          <input
+            checked={saveChecked}
+            onClick={() => {
+              setSaveChecked((prev) => !prev);
+            }}
+            type="checkbox"
+          ></input>
+        </div>
       </div>
     </div>
   );
