@@ -16,37 +16,38 @@ const Stats = () => {
 
   return (
     <div className={classes.statsContainer}>
-      <div className={classes.subStatContainer}>
-        <div className={classes.statList}>
-          {Object.keys(storedData).map(
-            (key) =>
-              !isNaN(key) && (
-                <div className={classes.statsCard}>
-                  <div className={classes.statCardTitle}>
-                    {storedData[key].name}
-                  </div>
-                  <ul className={classes.statsUl}>
-                    {Object.keys(storedData[key]).map(
-                      (k) =>
-                        k !== "name" && (
-                          <li className={classes.listItem}>
-                            {capitalizeWords(k)} : {storedData[key][k]}
-                          </li>
-                        )
-                    )}
-                  </ul>
+      <div className={classes.statList}>
+        {Object.keys(storedData).map(
+          (key) =>
+            !isNaN(key) && (
+              <div className={classes.statsCard}>
+                <div className={classes.statCardTitle}>
+                  {storedData[key].name}
                 </div>
-              )
-          )}
-        </div>
-        <div className={` ${classes.total}`}>
-          Total: {addCommaSeparator(storedData.total)} Rials
-        </div>
+                <ul className={classes.statsUl}>
+                  {Object.keys(storedData[key]).map(
+                    (k) =>
+                      k !== "name" && (
+                        <li className={classes.listItem}>
+                          {capitalizeWords(k)} : {storedData[key][k]}
+                        </li>
+                      )
+                  )}
+                </ul>
+              </div>
+            )
+        )}
+      </div>
+      <div className={` ${classes.total}`}>
+        Total: {addCommaSeparator(storedData.total)} Rials
+      </div>
+
+      <div className={classes.resetAndExtraContainer}>
         <Button className={classes.totalButton} onClick={handleReset}>
           Reset
         </Button>
+        <SingleExtra />
       </div>
-      <SingleExtra />
     </div>
   );
 };

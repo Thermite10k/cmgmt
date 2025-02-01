@@ -4,9 +4,6 @@
   color: #ffecd1;
   border-radius: 1rem;
   padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
 }
 .statList {
   padding: 0;
@@ -21,9 +18,7 @@
   font-weight: 750;
   font-size: 22px;
 }
-.subStatContainer {
-  width: 70%;
-}
+
 .statsUl {
   padding: 0;
   margin: 0;
@@ -62,4 +57,9 @@
 .totalButton:hover {
   background-color: #e68900;
   box-shadow: 0 0 2px #ff9800, 0 0 5px #ff9800, 0 0 8px #ff9800;
+}
+.resetAndExtraContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
