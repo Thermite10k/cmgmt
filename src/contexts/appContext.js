@@ -1,19 +1,23 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const dataContext = createContext(1);
 
 const initialState = {
   0: {
     name: "Tables",
-    amount: 0,
+    time: 0,
+    extras: 0,
+    total: 0,
   },
   1: {
     name: "Play Stations",
-    amount: 0,
+    time: 0,
+    extras: 0,
+    total: 0,
   },
   2: {
     name: "Extras",
-    amount: 0,
+    total: 0,
   },
   total: 0,
 };

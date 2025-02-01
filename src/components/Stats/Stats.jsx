@@ -4,6 +4,7 @@ import { addCommaSeparator } from "../utils/addCommaSeparator";
 import classes from "./Stats.module.css";
 import Button from "../UI/Button/Button";
 import SingleExtra from "../SingleExtra/SingleExtra";
+import capitalizeWords from "../utils/capitalize";
 const Stats = () => {
   const { storedData, setStoredData, resetData } = useContext(dataContext);
 
@@ -15,18 +16,29 @@ const Stats = () => {
 
   return (
     <div className={classes.statsContainer}>
-      <div>
-        <ul className={classes.statList}>
+      <div className={classes.subStatContainer}>
+        <div className={classes.statList}>
           {Object.keys(storedData).map(
             (key) =>
               !isNaN(key) && (
-                <li key={key} className={classes.listItem}>
-                  <div className={classes.name}>{storedData[key].name}</div>:{" "}
-                  {addCommaSeparator(storedData[key].amount)} Rials
-                </li>
+                <div className={classes.statsCard}>
+                  <div className={classes.statCardTitle}>
+                    {storedData[key].name}
+                  </div>
+                  <ul className={classes.statsUl}>
+                    {Object.keys(storedData[key]).map(
+                      (k) =>
+                        k !== "name" && (
+                          <li className={classes.listItem}>
+                            {capitalizeWords(k)} : {storedData[key][k]}
+                          </li>
+                        )
+                    )}
+                  </ul>
+                </div>
               )
           )}
-        </ul>
+        </div>
         <div className={` ${classes.total}`}>
           Total: {addCommaSeparator(storedData.total)} Rials
         </div>

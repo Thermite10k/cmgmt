@@ -12,7 +12,7 @@ const SingleExtra = () => {
     setStoredData((prevState) => ({
       ...prevState,
       total: prevState.total + +extra,
-      2: { ...prevState[2], amount: prevState[2].amount + +extra },
+      2: { ...prevState[2], total: prevState[2].total + +extra },
     }));
     setExtra(0);
   };

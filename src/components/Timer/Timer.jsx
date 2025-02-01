@@ -82,8 +82,13 @@ const Timer = ({ rate, title, index, id }) => {
   const save = () => {
     setStoredData((prevData) => ({
       ...prevData,
-      [id]: { ...prevData[id], amount: prevData[id].amount + +timeTotal },
-      2: { ...prevData[2], amount: prevData[2].amount + +totalExtra }, // 2 is the id for extras as described in context
+      [id]: {
+        ...prevData[id],
+        time: prevData[id].time + +timeTotal,
+        extras: prevData[id].extras + +totalExtra,
+        total: prevData[id].total + +total,
+      },
+
       total: prevData.total + +total,
     }));
   };
