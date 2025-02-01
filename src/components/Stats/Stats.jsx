@@ -3,6 +3,7 @@ import { dataContext } from "../../contexts/appContext";
 import { addCommaSeparator } from "../utils/addCommaSeparator";
 import classes from "./Stats.module.css";
 import Button from "../UI/Button/Button";
+import SingleExtra from "../SingleExtra/SingleExtra";
 const Stats = () => {
   const { storedData, setStoredData, resetData } = useContext(dataContext);
 
@@ -14,23 +15,26 @@ const Stats = () => {
 
   return (
     <div className={classes.statsContainer}>
-      <ul className={classes.statList}>
-        {Object.keys(storedData).map(
-          (key) =>
-            !isNaN(key) && (
-              <li key={key} className={classes.listItem}>
-                <div className={classes.name}>{storedData[key].name}</div>:{" "}
-                {addCommaSeparator(storedData[key].amount)} Rials
-              </li>
-            )
-        )}
-      </ul>
-      <div className={` ${classes.total}`}>
-        Total: {addCommaSeparator(storedData.total)} Rials
+      <div>
+        <ul className={classes.statList}>
+          {Object.keys(storedData).map(
+            (key) =>
+              !isNaN(key) && (
+                <li key={key} className={classes.listItem}>
+                  <div className={classes.name}>{storedData[key].name}</div>:{" "}
+                  {addCommaSeparator(storedData[key].amount)} Rials
+                </li>
+              )
+          )}
+        </ul>
+        <div className={` ${classes.total}`}>
+          Total: {addCommaSeparator(storedData.total)} Rials
+        </div>
+        <Button className={classes.totalButton} onClick={handleReset}>
+          Reset
+        </Button>
       </div>
-      <Button className={classes.totalButton} onClick={handleReset}>
-        Reset
-      </Button>
+      <SingleExtra />
     </div>
   );
 };

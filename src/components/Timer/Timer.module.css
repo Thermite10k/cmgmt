@@ -52,23 +52,8 @@ h3 {
   font-weight: normal;
 }
 .inputBox {
-  background-color: rgba(3, 3, 3, 0.7); /* Dark background */
-  border: 1px solid #555; /* Darker border */
-  color: white; /* White text */
-  padding: 10px; /* Some padding */
-  font-size: 16px; /* Increase font size */
-  border-radius: 4px; /* Rounded corners */
-  width: 100%; /* Full width */
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
-  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus effect */
+  width: 100%;
 }
-
-.inputBox:focus {
-  border-color: #26c485;
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-  outline: none;
-}
-
 .totalButton {
   width: 100%;
 }

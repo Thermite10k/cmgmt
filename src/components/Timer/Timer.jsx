@@ -5,6 +5,7 @@ import buttonClasses from "./TimerButton.module.css";
 import Indicator from "../UI/Indicator/Indicator";
 import { addCommaSeparator } from "../utils/addCommaSeparator";
 import { dataContext } from "../../contexts/appContext";
+import Input from "../UI/Input/Input";
 const Timer = ({ rate, title, index, id }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
@@ -142,7 +143,7 @@ const Timer = ({ rate, title, index, id }) => {
       <div className={classes.formContainer}>
         <form onSubmit={(e) => setNewRateHandler(e)}>
           <label>Custom rate: {addCommaSeparator(finalRate || rate)}</label>
-          <input
+          <Input
             className={classes.inputBox}
             onChange={(e) => customRateHandler(e)}
             value={customRate}
@@ -151,7 +152,7 @@ const Timer = ({ rate, title, index, id }) => {
         </form>
         <form onSubmit={(e) => addExtraHandler(e)}>
           <label>Extras: {addCommaSeparator(totalExtra)}</label>
-          <input
+          <Input
             className={classes.inputBox}
             ref={extraRef}
             onChange={(e) => setExtraChangeHandle(e)}
@@ -168,13 +169,13 @@ const Timer = ({ rate, title, index, id }) => {
         <div>Total: {addCommaSeparator(total)} Rials</div>
         <div className={classes.saveResults}>
           <label>Save? </label>
-          <input
+          <Input
             checked={saveChecked}
             onClick={() => {
               setSaveChecked((prev) => !prev);
             }}
             type="checkbox"
-          ></input>
+          ></Input>
         </div>
       </div>
     </div>
