@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import { dataContext } from "../../contexts/appContext";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
+import classes from "./SingleExtra.module.css";
+import { addCommaSeparator } from "../utils/addCommaSeparator";
 
 const SingleExtra = () => {
   const { setStoredData } = useContext(dataContext);
@@ -9,11 +11,16 @@ const SingleExtra = () => {
 
   const formSubmitHandle = (event) => {
     event.preventDefault();
-    setStoredData((prevState) => ({
-      ...prevState,
-      total: prevState.total + +extra,
-      2: { ...prevState[2], total: prevState[2].total + +extra },
-    }));
+    if (!isNaN(extra)) {
+      setStoredData((prevState) => ({
+        ...prevState,
+        total: prevState.total + +extra,
+        extras: {
+          ...prevState["extras"],
+          total: prevState["extras"].total + +extra,
+        },
+      }));
+    }
     setExtra(0);
   };
 
@@ -23,9 +30,9 @@ const SingleExtra = () => {
 
   return (
     <div>
-      <form onSubmit={formSubmitHandle}>
-        <label>Add extra: </label>
-        <Input value={extra} onChange={inputChangeHandle} />
+      <form className={classes.form} onSubmit={formSubmitHandle}>
+        <label>Add extra: {addCommaSeparator(extra)} Rials</label>
+        <Input onChange={inputChangeHandle} />
         <Button type="submit">Add</Button>
       </form>
     </div>

@@ -3,19 +3,19 @@ import { createContext, useState, useEffect } from "react";
 const dataContext = createContext(1);
 
 const initialState = {
-  0: {
+  Tables: {
     name: "Tables",
     time: 0,
     extras: 0,
     total: 0,
   },
-  1: {
+  "Play Stations": {
     name: "Play Stations",
     time: 0,
     extras: 0,
     total: 0,
   },
-  2: {
+  extras: {
     name: "Extras",
     total: 0,
   },

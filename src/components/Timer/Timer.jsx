@@ -6,7 +6,7 @@ import Indicator from "../UI/Indicator/Indicator";
 import { addCommaSeparator } from "../utils/addCommaSeparator";
 import { dataContext } from "../../contexts/appContext";
 import Input from "../UI/Input/Input";
-const Timer = ({ rate, title, index, id }) => {
+const Timer = ({ rate, title, index, id, serviceKey }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
   const [total, setTotal] = useState(0);
@@ -76,17 +76,17 @@ const Timer = ({ rate, title, index, id }) => {
     setExtra(0);
     setTimeTotal(0);
 
-    extraRef.current.value = 0;
+    extraRef.current.value = null;
   };
 
   const save = () => {
     setStoredData((prevData) => ({
       ...prevData,
-      [id]: {
-        ...prevData[id],
-        time: prevData[id].time + +timeTotal,
-        extras: prevData[id].extras + +totalExtra,
-        total: prevData[id].total + +total,
+      [serviceKey]: {
+        ...prevData[serviceKey],
+        time: prevData[serviceKey].time + +timeTotal,
+        extras: prevData[serviceKey].extras + +totalExtra,
+        total: prevData[serviceKey].total + +total,
       },
 
       total: prevData.total + +total,
@@ -113,7 +113,8 @@ const Timer = ({ rate, title, index, id }) => {
 
   const addExtraHandler = (event) => {
     event.preventDefault();
-
+    setExtra(0);
+    extraRef.current.value = null;
     setTotalExtra((prevVal) => +prevVal + +extra);
   };
   const getTotal = () => {
@@ -156,7 +157,7 @@ const Timer = ({ rate, title, index, id }) => {
           />
         </form>
         <form onSubmit={(e) => addExtraHandler(e)}>
-          <label>Extras: {addCommaSeparator(totalExtra)}</label>
+          <label>Add extra: {addCommaSeparator(extra)}</label>
           <Input
             className={classes.inputBox}
             ref={extraRef}

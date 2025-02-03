@@ -5,7 +5,8 @@ import classes from "./Stats.module.css";
 import Button from "../UI/Button/Button";
 import SingleExtra from "../SingleExtra/SingleExtra";
 import capitalizeWords from "../utils/capitalize";
-import Input from "../UI/Input/Input";
+import EditTimeTotal from "./EditTimeTotal";
+
 const Stats = () => {
   const { storedData, setStoredData, resetData } = useContext(dataContext);
   const optionRef = useRef(null);
@@ -14,13 +15,6 @@ const Stats = () => {
       resetData();
     }
   };
-  const editFormSubmitHandle = (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
-  };
 
   return (
     <div className={classes.statsContainer}>
@@ -28,7 +22,7 @@ const Stats = () => {
         <div className={classes.statList}>
           {Object.keys(storedData).map(
             (key) =>
-              !isNaN(key) && (
+              key != "total" && (
                 <div className={classes.statsCard}>
                   <div className={classes.statCardTitle}>
                     {storedData[key].name}
@@ -56,17 +50,7 @@ const Stats = () => {
         </Button>
       </div>
       <div className={classes.resetAndExtraContainer}>
-        <form onSubmit={editFormSubmitHandle}>
-          <label>
-            Select service to edit:
-            <select name="selectedService">
-              <option value={"tables"}>Tables</option>
-              <option value={"play stations"}>Play Stations</option>
-            </select>
-          </label>
-          <Input name="editBy" />
-          <Button type="submit">submit</Button>
-        </form>
+        <EditTimeTotal />
         <SingleExtra />
       </div>
     </div>

@@ -9,7 +9,7 @@
 }
 
 .stats {
-  width: 60%;
+  width: 100%;
 }
 .statList {
   padding: 0;
@@ -31,7 +31,7 @@
 }
 .statsCard {
   border-radius: 1rem;
-  min-width: 100px;
+  min-width: 130px;
   background-color: #2c3e50;
   padding: 0.5rem 1rem;
   display: flex;
@@ -66,7 +66,8 @@
   box-shadow: 0 0 2px #ff9800, 0 0 5px #ff9800, 0 0 8px #ff9800;
 }
 .resetAndExtraContainer {
+  width: fit-content;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-end;
 }

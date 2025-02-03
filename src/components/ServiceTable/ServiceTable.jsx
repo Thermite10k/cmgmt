@@ -21,6 +21,7 @@ const ServiceTable = ({ service }) => {
               index={index + 1}
               id={service.id}
               rate={service.hourlyRate}
+              serviceKey={service.key}
             />
           ))}
         </div>
