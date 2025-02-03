@@ -29,13 +29,13 @@ const SingleExtra = () => {
   };
 
   return (
-    <div>
-      <form className={classes.form} onSubmit={formSubmitHandle}>
-        <label>Add extra: {addCommaSeparator(extra)} Rials</label>
+    <form className={classes.form} onSubmit={formSubmitHandle}>
+      <label>Add extra: {addCommaSeparator(extra)} Rials</label>
+      <div>
         <Input onChange={inputChangeHandle} />
         <Button type="submit">Add</Button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 
