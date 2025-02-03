@@ -4,6 +4,12 @@
   color: #ffecd1;
   border-radius: 1rem;
   padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats {
+  width: 60%;
 }
 .statList {
   padding: 0;
@@ -37,6 +43,7 @@
   text-decoration: none;
   list-style: none;
   padding: 0;
+  padding-left: 0.5rem;
   margin: 0;
   align-items: center;
 }
