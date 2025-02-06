@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { dataContext } from "../../contexts/appContext";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
@@ -6,6 +6,7 @@ import classes from "./SingleExtra.module.css";
 import { addCommaSeparator } from "../utils/addCommaSeparator";
 
 const SingleExtra = () => {
+  const inputRef = useRef();
   const { setStoredData } = useContext(dataContext);
   const [extra, setExtra] = useState(0);
 
@@ -22,6 +23,7 @@ const SingleExtra = () => {
       }));
     }
     setExtra(0);
+    inputRef.current.value = null;
   };
 
   const inputChangeHandle = (event) => {
@@ -30,9 +32,12 @@ const SingleExtra = () => {
 
   return (
     <form className={classes.form} onSubmit={formSubmitHandle}>
-      <label>Add extra: {addCommaSeparator(extra)} Rials</label>
+      <label>
+        Add extra: {extra != 0 && !isNaN(extra) ? addCommaSeparator(extra) : 0}{" "}
+        Rials
+      </label>
       <div>
-        <Input onChange={inputChangeHandle} />
+        <Input ref={inputRef} onChange={inputChangeHandle} />
         <Button type="submit">Add</Button>
       </div>
     </form>

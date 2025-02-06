@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
 import { dataContext } from "../../contexts/appContext";
@@ -7,12 +7,14 @@ import classes from "./EditTimeTotal.module.css";
 const EditTimeTotal = () => {
   const [inputVal, setInputVal] = useState(0);
   const { setStoredData } = useContext(dataContext);
+  const inputRef = useRef();
   const editFormSubmitHandle = (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const formJson = Object.fromEntries(formData.entries());
     setInputVal(0);
+    inputRef.current.value = null;
 
     if (formJson.editBy.length > 0 && !isNaN(inputVal)) {
       const key = formJson.selectedService;
@@ -38,9 +40,17 @@ const EditTimeTotal = () => {
             <option value={"Play Stations"}>Play Stations</option>
           </select>
         </label>
-        <label>Edit by: {addCommaSeparator(inputVal)} Rials</label>
+        <label>
+          Edit by:{" "}
+          {inputVal != 0 && !isNaN(inputVal) ? addCommaSeparator(inputVal) : 0}{" "}
+          Rials
+        </label>
         <div>
-          <Input onChange={(e) => setInputVal(+e.target.value)} name="editBy" />
+          <Input
+            ref={inputRef}
+            onChange={(e) => setInputVal(+e.target.value)}
+            name="editBy"
+          />
           <Button type="submit">submit</Button>
         </div>
       </form>
