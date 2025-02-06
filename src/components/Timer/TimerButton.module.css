@@ -7,3 +7,15 @@
 .buttonReset {
   background-color: #ff9800;
 }
+.detailsButton {
+  border-radius: 50%;
+  rotate: 0;
+  transition: rotate 0.5s ease;
+  padding: 1px;
+  width: 12px;
+  height: 12px;
+  height: fit-content;
+}
+.rotateDown {
+  rotate: 180deg;
+}

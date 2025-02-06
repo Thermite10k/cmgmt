@@ -26,7 +26,6 @@ const SingleExtra = () => {
 
   const inputChangeHandle = (event) => {
     setExtra(+event.target.value);
-    // just a test...
   };
 
   return (

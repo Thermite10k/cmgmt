@@ -16,6 +16,7 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
   const [totalExtra, setTotalExtra] = useState(0);
   const [timeTotal, setTimeTotal] = useState(0);
   const [saveChecked, setSaveChecked] = useState(true);
+  const [showOptions, setShowOptions] = useState(false);
   const { setStoredData } = useContext(dataContext);
   const intervalRef = useRef(null);
   const extraRef = useRef(null);
@@ -125,8 +126,18 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
   return (
     <div className={classes.timerContainer}>
       <div className={`${classes.titleContainer}`}>
-        {title} #{index}
-        <Indicator isActive={`${isActive ? "active" : ""}`} />
+        <div>
+          {title} #{index}
+          <Indicator isActive={`${isActive ? "active" : ""}`} />
+        </div>
+        <Button
+          className={`${buttonClasses.detailsButton} ${
+            showOptions ? "" : buttonClasses.rotateDown
+          }`}
+          onClick={() => setShowOptions((prevState) => !prevState)}
+        >
+          ^
+        </Button>
       </div>
       <div className={classes.timerAndButtons}>
         <h2>
@@ -146,42 +157,48 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
           </Button>
         </div>
       </div>
-      <div className={classes.formContainer}>
-        <form onSubmit={(e) => setNewRateHandler(e)}>
-          <label>Custom rate: {addCommaSeparator(finalRate || rate)}</label>
-          <Input
-            className={classes.inputBox}
-            onChange={(e) => customRateHandler(e)}
-            value={customRate}
-            type="text"
-          />
-        </form>
-        <form onSubmit={(e) => addExtraHandler(e)}>
-          <label>Add extra: {addCommaSeparator(extra)}</label>
-          <Input
-            className={classes.inputBox}
-            ref={extraRef}
-            onChange={(e) => setExtraChangeHandle(e)}
-          />
-        </form>
-      </div>
+      <div
+        className={`${classes.detailsContainer} ${
+          showOptions ? classes.show : ""
+        }`}
+      >
+        <div className={`${classes.formContainer}`}>
+          <form onSubmit={(e) => setNewRateHandler(e)}>
+            <label>Custom rate: {addCommaSeparator(finalRate || rate)}</label>
+            <Input
+              className={classes.inputBox}
+              onChange={(e) => customRateHandler(e)}
+              value={customRate}
+              type="text"
+            />
+          </form>
+          <form onSubmit={(e) => addExtraHandler(e)}>
+            <label>Add extra: {addCommaSeparator(extra)}</label>
+            <Input
+              className={classes.inputBox}
+              ref={extraRef}
+              onChange={(e) => setExtraChangeHandle(e)}
+            />
+          </form>
+        </div>
 
-      <div className={classes.subTotals}>
-        <div>Time: {addCommaSeparator(timeTotal)}</div>
-        <div>Extra fees: {addCommaSeparator(totalExtra)}</div>
-      </div>
+        <div className={classes.subTotals}>
+          <div>Time: {addCommaSeparator(timeTotal)}</div>
+          <div>Extra fees: {addCommaSeparator(totalExtra)}</div>
+        </div>
 
-      <div className={classes.total}>
-        <div>Total: {addCommaSeparator(total)} Rials</div>
-        <div className={classes.saveResults}>
-          <label>Save? </label>
-          <Input
-            checked={saveChecked}
-            onClick={() => {
-              setSaveChecked((prev) => !prev);
-            }}
-            type="checkbox"
-          ></Input>
+        <div className={classes.total}>
+          <div>Total: {addCommaSeparator(total)} Rials</div>
+          <div className={classes.saveResults}>
+            <label>Save? </label>
+            <Input
+              checked={saveChecked}
+              onClick={() => {
+                setSaveChecked((prev) => !prev);
+              }}
+              type="checkbox"
+            ></Input>
+          </div>
         </div>
       </div>
     </div>

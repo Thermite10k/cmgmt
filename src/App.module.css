@@ -40,6 +40,7 @@ $phlox: rgba(192, 76, 253, 1); */
   min-height: 100vh;
   font-family: Segoe UI ", Tahoma, Geneva, Verdana, sans-serif;";
   color: #ffecd1;
+  overflow: hidden;
 }
 h1 {
   padding: 0;
