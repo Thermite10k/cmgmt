@@ -62,22 +62,26 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
     setTimeTotal(+totalTimePrice.toFixed());
   };
   const handleReset = () => {
-    if (saveChecked) {
-      save();
+    if (isActive) {
+      handleStop();
     } else {
-      setSaveChecked(true);
+      if (saveChecked) {
+        save();
+      } else {
+        setSaveChecked(true);
+      }
+
+      setIsActive(false);
+      setTime({ hours: 0, minutes: 0, seconds: 0 });
+      setCustomRate(rate);
+      setFinalRate(rate);
+      setTotal(0);
+      setTotalExtra(0);
+      setExtra(0);
+      setTimeTotal(0);
+
+      extraRef.current.value = null;
     }
-
-    setIsActive(false);
-    setTime({ hours: 0, minutes: 0, seconds: 0 });
-    setCustomRate(rate);
-    setFinalRate(rate);
-    setTotal(0);
-    setTotalExtra(0);
-    setExtra(0);
-    setTimeTotal(0);
-
-    extraRef.current.value = null;
   };
 
   const save = () => {
