@@ -61,8 +61,8 @@ function App() {
       <center>
         <h1>9 Billiards Club</h1>
       </center>
-      {data.length && data.map((obj, index) => <ServiceTable service={obj} />)}
       <Stats />
+      {data.length && data.map((obj, index) => <ServiceTable service={obj} />)}
     </div>
   );
 }

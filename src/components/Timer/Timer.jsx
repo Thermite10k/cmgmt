@@ -16,11 +16,14 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
   const [totalExtra, setTotalExtra] = useState(0);
   const [timeTotal, setTimeTotal] = useState(0);
   const [saveChecked, setSaveChecked] = useState(true);
-  const [showOptions, setShowOptions] = useState(false);
+  const [showOptions, setShowOptions] = useState(true); // this fearure is not used, the button is disabled.
+  const [showAddToTotal, setShowAddToTotal] = useState(false);
+  const [addToTotal, setAddToTotal] = useState(0);
+  // const [extraTotal, setExtraTotal] = useState(0);
   const { setStoredData } = useContext(dataContext);
   const intervalRef = useRef(null);
   const extraRef = useRef(null);
-
+  const addToTotalRef = useRef(null);
   useEffect(() => {
     let interval = null;
 
@@ -58,7 +61,8 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
 
     const totalMinutes = time.hours * 60 + time.minutes + time.seconds / 60;
     const totalTimePrice =
-      (totalMinutes / 60) * (customRate > 0 ? customRate : rate);
+      (totalMinutes / 60) *
+      (!isNaN(customRate) && customRate != 0 ? customRate : rate);
     setTimeTotal(+totalTimePrice.toFixed());
   };
   const handleReset = () => {
@@ -79,7 +83,9 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
       setTotalExtra(0);
       setExtra(0);
       setTimeTotal(0);
-
+      setAddToTotal(0);
+      setShowAddToTotal(false);
+      addToTotalRef.current.value = null;
       extraRef.current.value = null;
     }
   };
@@ -126,6 +132,15 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
     setTotal(+timeTotal + +totalExtra);
   };
   useEffect(() => getTotal(), [finalRate, timeTotal, totalExtra]);
+  const showAddToTotalHandler = () => {
+    setShowAddToTotal((prevstate) => !prevstate);
+  };
+
+  const addToTotalFormHandler = (event) => {
+    event.preventDefault();
+    // setExtraTotal((lastVal) => lastVal + +addToTotal);
+    // setAddToTotal(0);
+  };
 
   return (
     <div className={classes.timerContainer}>
@@ -134,14 +149,14 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
           {title} #{index}
           <Indicator isActive={`${isActive ? "active" : ""}`} />
         </div>
-        <Button
+        {/* <Button   ... uncomment this component to enable the dropdown feature
           className={`${buttonClasses.detailsButton} ${
             showOptions ? "" : buttonClasses.rotateDown
           }`}
           onClick={() => setShowOptions((prevState) => !prevState)}
         >
           ^
-        </Button>
+        </Button> */}
       </div>
       <div className={classes.timerAndButtons}>
         <h2>
@@ -172,7 +187,7 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
             <Input
               className={classes.inputBox}
               onChange={(e) => customRateHandler(e)}
-              value={customRate}
+              value={!isNaN(customRate) ? customRate : null}
               type="text"
             />
           </form>
@@ -184,6 +199,24 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
               onChange={(e) => setExtraChangeHandle(e)}
             />
           </form>
+          <form
+            onSubmit={(e) => addToTotalFormHandler(e)}
+            className={classes.addToTotalForm}
+          >
+            <label
+              className={classes.addToTotalLabel}
+              onClick={showAddToTotalHandler}
+            >
+              Add to toal: {addCommaSeparator(addToTotal)} Rials
+            </label>
+            <Input
+              ref={addToTotalRef}
+              onChange={(e) => setAddToTotal(+e.target.value)}
+              className={`${classes.addToTotalInput} ${
+                showAddToTotal ? classes.showAddToTotalForm : ""
+              }`}
+            />
+          </form>
         </div>
 
         <div className={classes.subTotals}>
@@ -191,6 +224,17 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
           <div>Extra fees: {addCommaSeparator(totalExtra)}</div>
         </div>
 
+        <div>
+          {showAddToTotal && (
+            <div>
+              Last Total: {addCommaSeparator(addToTotal)}
+              <div>
+                Rials Last Total + total:{" "}
+                {addCommaSeparator(+addToTotal + +total)} Rials
+              </div>
+            </div>
+          )}
+        </div>
         <div className={classes.total}>
           <div>Total: {addCommaSeparator(total)} Rials</div>
           <div className={classes.saveResults}>

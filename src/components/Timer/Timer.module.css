@@ -75,3 +75,17 @@ h3 {
 .totalValue {
   color: #26c485;
 }
+.addToTotalLabel:hover {
+  cursor: pointer;
+  color: aliceblue;
+}
+.addToTotalForm {
+  display: flex;
+  flex-direction: column;
+}
+.addToTotalInput {
+  display: none;
+}
+.showAddToTotalForm {
+  display: block;
+}
