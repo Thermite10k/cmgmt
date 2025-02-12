@@ -3,7 +3,7 @@ import { dataContext } from "../../contexts/appContext";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
 import classes from "./SingleExtra.module.css";
-import { addCommaSeparator } from "../utils/addCommaSeparator";
+import { addCommaSeparator } from "../../utils/addCommaSeparator";
 
 const SingleExtra = () => {
   const inputRef = useRef();

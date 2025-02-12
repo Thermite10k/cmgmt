@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef } from "react";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
 import { dataContext } from "../../contexts/appContext";
-import { addCommaSeparator } from "../utils/addCommaSeparator";
+import { addCommaSeparator } from "../../utils/addCommaSeparator";
 import classes from "./EditTimeTotal.module.css";
 const EditTimeTotal = () => {
   const [inputVal, setInputVal] = useState(0);

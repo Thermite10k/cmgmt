@@ -3,7 +3,7 @@ import classes from "./Timer.module.css";
 import Button from "../UI/Button/Button";
 import buttonClasses from "./TimerButton.module.css";
 import Indicator from "../UI/Indicator/Indicator";
-import { addCommaSeparator } from "../utils/addCommaSeparator";
+import { addCommaSeparator } from "../../utils/addCommaSeparator";
 import { dataContext } from "../../contexts/appContext";
 import Input from "../UI/Input/Input";
 const Timer = ({ rate, title, index, id, serviceKey }) => {

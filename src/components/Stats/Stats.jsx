@@ -1,10 +1,10 @@
 import React, { useContext, useRef } from "react";
 import { dataContext } from "../../contexts/appContext";
-import { addCommaSeparator } from "../utils/addCommaSeparator";
+import { addCommaSeparator } from "../../utils/addCommaSeparator";
 import classes from "./Stats.module.css";
 import Button from "../UI/Button/Button";
 import SingleExtra from "../SingleExtra/SingleExtra";
-import capitalizeWords from "../utils/capitalize";
+import capitalizeWords from "../../utils/capitalize";
 import EditTimeTotal from "./EditTimeTotal";
 
 const Stats = () => {
