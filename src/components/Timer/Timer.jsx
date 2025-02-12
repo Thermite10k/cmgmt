@@ -6,6 +6,7 @@ import Indicator from "../UI/Indicator/Indicator";
 import { addCommaSeparator } from "../../utils/addCommaSeparator";
 import { dataContext } from "../../contexts/appContext";
 import Input from "../UI/Input/Input";
+import roundRials from "../../utils/roundRials";
 const Timer = ({ rate, title, index, id, serviceKey }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
@@ -60,9 +61,11 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
     setIsActive(false);
 
     const totalMinutes = time.hours * 60 + time.minutes + time.seconds / 60;
-    const totalTimePrice =
+    const totalTimePrice = roundRials(
       (totalMinutes / 60) *
-      (!isNaN(customRate) && customRate != 0 ? customRate : rate);
+        (!isNaN(customRate) && customRate != 0 ? customRate : rate)
+    );
+
     setTimeTotal(+totalTimePrice.toFixed());
   };
   const handleReset = () => {
