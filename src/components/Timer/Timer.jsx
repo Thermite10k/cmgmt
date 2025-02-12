@@ -128,9 +128,11 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
 
   const addExtraHandler = (event) => {
     event.preventDefault();
-    setExtra(0);
-    extraRef.current.value = null;
-    setTotalExtra((prevVal) => +prevVal + +extra);
+    if (parseInt(extra)) {
+      setExtra(0);
+      extraRef.current.value = null;
+      setTotalExtra((prevVal) => +prevVal + +extra);
+    }
   };
   const getTotal = () => {
     setTotal(+timeTotal + +totalExtra);
@@ -142,9 +144,11 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
 
   const addToTotalFormHandler = (event) => {
     event.preventDefault();
-    setExtraTotal((lastVal) => lastVal + +addToTotal);
-    addToTotalRef.current.value = "";
-    setAddToTotal(0);
+    if (parseInt(addToTotal)) {
+      setExtraTotal((lastVal) => lastVal + +addToTotal);
+      addToTotalRef.current.value = "";
+      setAddToTotal(0);
+    }
   };
 
   return (
@@ -197,7 +201,9 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
             />
           </form>
           <form onSubmit={(e) => addExtraHandler(e)}>
-            <label>Add extra: {addCommaSeparator(extra)}</label>
+            <label>
+              Add extra: {addCommaSeparator(!isNaN(extra) ? extra : 0)}
+            </label>
             <Input
               className={classes.inputBox}
               ref={extraRef}
