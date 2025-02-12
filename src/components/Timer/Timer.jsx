@@ -20,7 +20,7 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
   const [showOptions, setShowOptions] = useState(true); // this fearure is not used, the button is disabled.
   const [showAddToTotal, setShowAddToTotal] = useState(false);
   const [addToTotal, setAddToTotal] = useState(0);
-  // const [extraTotal, setExtraTotal] = useState(0);
+  const [extraTotal, setExtraTotal] = useState(0);
   const { setStoredData } = useContext(dataContext);
   const intervalRef = useRef(null);
   const extraRef = useRef(null);
@@ -88,6 +88,7 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
       setTimeTotal(0);
       setAddToTotal(0);
       setShowAddToTotal(false);
+      setExtraTotal(0);
       addToTotalRef.current.value = null;
       extraRef.current.value = null;
     }
@@ -141,8 +142,9 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
 
   const addToTotalFormHandler = (event) => {
     event.preventDefault();
-    // setExtraTotal((lastVal) => lastVal + +addToTotal);
-    // setAddToTotal(0);
+    setExtraTotal((lastVal) => lastVal + +addToTotal);
+    addToTotalRef.current.value = "";
+    setAddToTotal(0);
   };
 
   return (
@@ -210,7 +212,8 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
               className={classes.addToTotalLabel}
               onClick={showAddToTotalHandler}
             >
-              Add to toal: {addCommaSeparator(addToTotal)} Rials
+              Add to toal:{" "}
+              {addCommaSeparator(!isNaN(addToTotal) ? addToTotal : 0)} Rials
             </label>
             <Input
               ref={addToTotalRef}
@@ -230,10 +233,10 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
         <div>
           {showAddToTotal && (
             <div>
-              Last Total: {addCommaSeparator(addToTotal)}
+              Last Total: {addCommaSeparator(extraTotal)}
               <div>
                 Rials Last Total + total:{" "}
-                {addCommaSeparator(+addToTotal + +total)} Rials
+                {addCommaSeparator(+extraTotal + +total)} Rials
               </div>
             </div>
           )}
