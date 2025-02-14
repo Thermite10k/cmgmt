@@ -1,11 +1,14 @@
 const roundRials = (val) => {
   let rem = 0;
 
-  rem = Math.floor(+val / 1000);
+  const minChange = 10000; // to geth the last 5 digits
+  const step = 4999; // minimum price step
 
-  let change = val - rem * 1000;
-  let addToVal = 1000 - change;
-  if (change > 499) {
+  rem = Math.floor(+val / minChange);
+
+  let change = val - rem * minChange;
+  let addToVal = minChange - change;
+  if (change > step) {
     val = val + addToVal;
   } else {
     val = val - change;
