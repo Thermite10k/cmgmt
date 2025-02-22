@@ -12,7 +12,7 @@ const QuickView = ({}) => {
         <div className={classes.indicatorList}>
           {k}:{" "}
           {storedData.serviceStatus[k].map((state, index) => (
-            <div>
+            <div className={classes.indicatorContainer}>
               #{index + 1} <Indicator isActive={state} />
             </div>
           ))}
