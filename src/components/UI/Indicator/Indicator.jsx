@@ -4,7 +4,7 @@ const Indicator = ({ isActive }) => {
   return (
     <div
       className={`${classes.indicator} ${
-        isActive === "active" ? classes.active : ""
+        isActive === "active" || isActive == 1 ? classes.active : ""
       }`}
     ></div>
   );

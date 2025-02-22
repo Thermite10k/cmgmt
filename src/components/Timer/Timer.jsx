@@ -7,7 +7,7 @@ import { addCommaSeparator } from "../../utils/addCommaSeparator";
 import { dataContext } from "../../contexts/appContext";
 import Input from "../UI/Input/Input";
 import roundRials from "../../utils/roundRials";
-const Timer = ({ rate, title, index, id, serviceKey }) => {
+const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
   const [total, setTotal] = useState(0);
@@ -42,7 +42,7 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
             seconds: newSeconds % 60,
           };
         });
-      }, 1);
+      }, 1000);
     } else if (!isActive && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -56,10 +56,12 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
 
   const handleStart = () => {
     setIsActive(true);
+    statusHandle(index - 1, 1);
   };
   const handleStop = () => {
     setIsActive(false);
 
+    statusHandle(index - 1, 0);
     const totalMinutes = time.hours * 60 + time.minutes + time.seconds / 60;
     const totalTimePrice = roundRials(
       (totalMinutes / 60) *

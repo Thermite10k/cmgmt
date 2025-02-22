@@ -1,0 +1,13 @@
+.quickViewContainer {
+  background: linear-gradient(135deg, #1e1e1e, #2c3e50);
+  margin-top: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  /* justify-content: space-around; */
+  gap: 5rem;
+}
+.indicatorList {
+  display: flex;
+  gap: 1rem;
+}

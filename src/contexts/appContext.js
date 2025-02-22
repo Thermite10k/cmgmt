@@ -21,13 +21,17 @@ const initialState = {
       total: 0,
     },
   },
+  serviceStatus: {},
   total: 0,
 };
 export const DataProvider = ({ children }) => {
   const [storedData, setStoredData] = useState(() => {
     const savedData = JSON.parse(localStorage.getItem("saleStats"));
 
-    return savedData && savedData.services ? savedData : initialState;
+    return savedData &&
+      Object.keys(savedData).length == Object.keys(initialState).length
+      ? savedData
+      : initialState;
   });
   const resetData = () => {
     setStoredData(initialState);

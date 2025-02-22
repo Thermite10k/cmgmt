@@ -12,6 +12,7 @@ function App() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(null);
+  const { storedData, setStoredData } = useContext(dataContext);
 
   // const { storedData, setStoredData } = useContext(dataContext);
   // console.log(storedData);
@@ -35,6 +36,13 @@ function App() {
           hourlyRate: data[key].hourlyRate,
           count: data[key].count,
         });
+        setStoredData((prevState) => ({
+          ...prevState,
+          serviceStatus: {
+            ...prevState.serviceStatus,
+            [key]: new Array(data[key].count).fill(0),
+          },
+        }));
       }
       setData(loadedData);
     } catch (error) {
