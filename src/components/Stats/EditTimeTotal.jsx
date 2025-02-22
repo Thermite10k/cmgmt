@@ -21,10 +21,13 @@ const EditTimeTotal = () => {
 
       setStoredData((prevState) => ({
         ...prevState,
-        [key]: {
-          ...prevState[key],
-          time: prevState[key].time + +formJson.editBy,
-          total: prevState[key].total + +formJson.editBy,
+        services: {
+          ...prevState.services,
+          [key]: {
+            ...prevState.services[key],
+            time: prevState.services[key].time + +formJson.editBy,
+            total: prevState.services[key].total + +formJson.editBy,
+          },
         },
         total: prevState.total + +formJson.editBy,
       }));

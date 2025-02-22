@@ -42,7 +42,7 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
             seconds: newSeconds % 60,
           };
         });
-      }, 1000);
+      }, 1);
     } else if (!isActive && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -97,11 +97,15 @@ const Timer = ({ rate, title, index, id, serviceKey }) => {
   const save = () => {
     setStoredData((prevData) => ({
       ...prevData,
-      [serviceKey]: {
-        ...prevData[serviceKey],
-        time: prevData[serviceKey].time + +timeTotal,
-        extras: prevData[serviceKey].extras + +totalExtra,
-        total: prevData[serviceKey].total + +total,
+      services: {
+        ...prevData.services,
+
+        [serviceKey]: {
+          ...prevData.services[serviceKey],
+          time: prevData.services[serviceKey].time + +timeTotal,
+          extras: prevData.services[serviceKey].extras + +totalExtra,
+          total: prevData.services[serviceKey].total + +total,
+        },
       },
 
       total: prevData.total + +total,

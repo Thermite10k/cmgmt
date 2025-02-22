@@ -16,9 +16,13 @@ const SingleExtra = () => {
       setStoredData((prevState) => ({
         ...prevState,
         total: prevState.total + +extra,
-        extras: {
-          ...prevState["extras"],
-          total: prevState["extras"].total + +extra,
+        services: {
+          ...prevState.services,
+
+          extras: {
+            ...prevState.services["extras"],
+            total: prevState.services["extras"].total + +extra,
+          },
         },
       }));
     }
