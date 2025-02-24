@@ -162,8 +162,8 @@ const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
       <div className={`${classes.titleContainer}`}>
         <div>
           {title} #{index}
-          <Indicator isActive={`${isActive ? "active" : ""}`} />
         </div>
+        <Indicator isActive={`${isActive ? "active" : ""}`} />
         {/* <Button   ... uncomment this component to enable the dropdown feature
           className={`${buttonClasses.detailsButton} ${
             showOptions ? "" : buttonClasses.rotateDown
@@ -174,19 +174,34 @@ const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
         </Button> */}
       </div>
       <div className={classes.timerAndButtons}>
-        <h2>
-          {String(time.hours).padStart(2, "0")}:
-          {String(time.minutes).padStart(2, "0")}:
-          {String(time.seconds).padStart(2, "0")}
-        </h2>
+        <div className={classes.counterContainer}>
+          <div className={classes.time}>
+            {String(time.hours).padStart(2, "0")}:
+          </div>
+          <div className={classes.time}>
+            {String(time.minutes).padStart(2, "0")}:
+          </div>
+          <div className={classes.time}>
+            {String(time.seconds).padStart(2, "0")}
+          </div>
+        </div>
         <div className={classes.buttonContainer}>
-          <Button className={buttonClasses.buttonStart} onClick={handleStart}>
+          <Button
+            className={`${buttonClasses.buttonStart} ${buttonClasses.controlButton}`}
+            onClick={handleStart}
+          >
             Start
           </Button>
-          <Button className={buttonClasses.buttonStop} onClick={handleStop}>
+          <Button
+            className={`${buttonClasses.buttonStop} ${buttonClasses.controlButton}`}
+            onClick={handleStop}
+          >
             Stop
           </Button>
-          <Button className={buttonClasses.buttonReset} onClick={handleReset}>
+          <Button
+            className={`${buttonClasses.buttonReset} ${buttonClasses.controlButton}`}
+            onClick={handleReset}
+          >
             Reset
           </Button>
         </div>

@@ -4,7 +4,6 @@ import { dataContext } from "../../contexts/appContext";
 import classes from "./QuickView.module.css";
 const QuickView = ({}) => {
   const { storedData } = useContext(dataContext);
-  console.log(storedData.serviceStatus);
 
   return (
     <div className={classes.quickViewContainer}>
