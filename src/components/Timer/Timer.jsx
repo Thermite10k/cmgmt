@@ -19,6 +19,8 @@ const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
   const [saveChecked, setSaveChecked] = useState(true);
   const [showOptions, setShowOptions] = useState(true); // this fearure is not used, the button is disabled.
   const [showAddToTotal, setShowAddToTotal] = useState(false);
+  const [showAddExtra, setShowAddExtra] = useState(false);
+  const [showCustomRate, setShowCustomRate] = useState(false);
   const [addToTotal, setAddToTotal] = useState(0);
   const [extraTotal, setExtraTotal] = useState(0);
   const { setStoredData } = useContext(dataContext);
@@ -147,6 +149,12 @@ const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
   const showAddToTotalHandler = () => {
     setShowAddToTotal((prevstate) => !prevstate);
   };
+  const showCustomRateHandler = () => {
+    setShowCustomRate((prevState) => !prevState);
+  };
+  const showAddExtraHandler = () => {
+    setShowAddExtra((prevState) => !prevState);
+  };
 
   const addToTotalFormHandler = (event) => {
     event.preventDefault();
@@ -213,20 +221,32 @@ const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
       >
         <div className={`${classes.formContainer}`}>
           <form onSubmit={(e) => setNewRateHandler(e)}>
-            <label>Custom rate: {addCommaSeparator(finalRate || rate)}</label>
+            <label
+              onClick={showCustomRateHandler}
+              className={classes.reactiveLabel}
+            >
+              Custom rate: {addCommaSeparator(finalRate || rate)}
+            </label>
             <Input
-              className={classes.inputBox}
+              className={`${classes.relativeFormHidden} ${
+                showCustomRate ? classes.relativeFormShown : ""
+              }`}
               onChange={(e) => customRateHandler(e)}
               value={!isNaN(customRate) ? customRate : null}
               type="text"
             />
           </form>
           <form onSubmit={(e) => addExtraHandler(e)}>
-            <label>
-              Add extra: {addCommaSeparator(!isNaN(extra) ? extra : 0)}
+            <label
+              className={classes.reactiveLabel}
+              onClick={showAddExtraHandler}
+            >
+              Add extra: {addCommaSeparator(!isNaN(extra) ? extra : 0)} Rials
             </label>
             <Input
-              className={classes.inputBox}
+              className={`${classes.relativeFormHidden} ${
+                showAddExtra ? classes.relativeFormShown : ""
+              }`}
               ref={extraRef}
               onChange={(e) => setExtraChangeHandle(e)}
             />
@@ -236,7 +256,7 @@ const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
             className={classes.addToTotalForm}
           >
             <label
-              className={classes.addToTotalLabel}
+              className={classes.reactiveLabel}
               onClick={showAddToTotalHandler}
             >
               Add to toal:{" "}
@@ -245,8 +265,8 @@ const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
             <Input
               ref={addToTotalRef}
               onChange={(e) => setAddToTotal(+e.target.value)}
-              className={`${classes.addToTotalInput} ${
-                showAddToTotal ? classes.showAddToTotalForm : ""
+              className={`${classes.relativeFormHidden} ${
+                showAddToTotal ? classes.relativeFormShown : ""
               }`}
             />
           </form>
@@ -260,26 +280,26 @@ const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
         <div>
           {showAddToTotal && (
             <div>
-              Last Total: {addCommaSeparator(extraTotal)}
-              <div>
-                Rials Last Total + total:{" "}
-                {addCommaSeparator(+extraTotal + +total)} Rials
+              Last Total: {addCommaSeparator(extraTotal)} Rials
+              <div className={classes.lastTotal}>
+                Sum : {addCommaSeparator(+extraTotal + +total)} Rials
               </div>
             </div>
           )}
         </div>
         <div className={classes.total}>
           <div>Total: {addCommaSeparator(total)} Rials</div>
-          <div className={classes.saveResults}>
-            <label>Save? </label>
-            <Input
-              checked={saveChecked}
-              onClick={() => {
-                setSaveChecked((prev) => !prev);
-              }}
-              type="checkbox"
-            ></Input>
-          </div>
+          <div className={classes.saveResults}></div>
+        </div>
+        <div>
+          <label>Save? </label>
+          <Input
+            checked={saveChecked}
+            onClick={() => {
+              setSaveChecked((prev) => !prev);
+            }}
+            type="checkbox"
+          ></Input>
         </div>
       </div>
     </div>

@@ -20,6 +20,8 @@
   rotate: 180deg;
 }
 .controlButton {
-  padding: 0.25rem 0;
-  width: 3rem;
+  margin: 0;
+  padding: 0.28vw;
+  width: 3.9vw;
+  font-size: 1.2vw;
 }

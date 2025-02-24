@@ -9,7 +9,7 @@ h3 {
   width: 15%;
   /* 26c585 = 38 196 133 */
   /* 15 61 6d = 21 97 109*/
-  background-color: rgba(21, 97, 109, 0.65);
+  background-color: rgba(21, 97, 109, 0.75);
   /* border: 1px solid #c04cfd; */
   border-radius: 0.5rem;
   height: fit-content;
@@ -24,7 +24,8 @@ h3 {
   flex-wrap: wrap;
 }
 .time {
-  font-size: 2.8vw;
+  font-size: 3vw;
+  color: lightyellow;
   font-weight: 650;
 }
 .formContainer {
@@ -45,7 +46,7 @@ h3 {
   margin: 1rem 0 1rem 0;
 }
 .titleContainer {
-  font-size: 1.5vw;
+  font-size: 1.8vw;
   font-weight: 650;
   /* margin-bottom: 1rem; */
   display: flex;
@@ -79,7 +80,10 @@ h3 {
 .totalValue {
   color: #26c485;
 }
-.addToTotalLabel:hover {
+.reactiveLabel {
+  font-weight: 750;
+}
+.reactiveLabel:hover {
   cursor: pointer;
   color: aliceblue;
 }
@@ -87,9 +91,14 @@ h3 {
   display: flex;
   flex-direction: column;
 }
-.addToTotalInput {
+.relativeFormHidden {
   display: none;
 }
-.showAddToTotalForm {
+.relativeFormShown {
   display: block;
+}
+.lastTotal {
+  font-weight: 800;
+  font-size: 1.6vw;
+  color: sandybrown;
 }
