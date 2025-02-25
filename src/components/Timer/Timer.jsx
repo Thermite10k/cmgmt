@@ -278,7 +278,7 @@ const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
         </div>
 
         <div>
-          {showAddToTotal && (
+          {(extraTotal > 0 || showAddToTotal) && (
             <div>
               Last Total: {addCommaSeparator(extraTotal)} Rials
               <div className={classes.lastTotal}>
