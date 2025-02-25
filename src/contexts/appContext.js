@@ -34,7 +34,12 @@ export const DataProvider = ({ children }) => {
       : initialState;
   });
   const resetData = () => {
-    setStoredData(initialState);
+    let statusArray = storedData.serviceStatus;
+    setStoredData({
+      ...initialState,
+      serviceStatus: statusArray,
+    });
+
     localStorage.removeItem("saleStats");
   };
   useEffect(() => {
