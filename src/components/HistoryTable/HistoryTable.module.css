@@ -1,0 +1,59 @@
+/* General styling for the container */
+.historyTableContainer {
+  margin-top: 1rem;
+  padding: 20px;
+  background: linear-gradient(135deg, #1e1e1e, #2c3e50);
+  border-radius: 1rem;
+}
+
+/* Table styling */
+.historyTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #2c3e50;
+  color: #ffecd1;
+  font-family: Arial, sans-serif;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Thead styling */
+.historyTableHead th {
+  padding: 10px;
+  text-align: center;
+  background-color: #1e1e1e;
+  color: #ffecd1;
+  border: 1px solid #444;
+  font-weight: bold;
+}
+
+/* Tbody styling */
+.historyTableBody td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #444;
+}
+
+/* Row hover effect */
+.historyRow:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+/* Styling for alternating rows */
+.historyTableBody tr:nth-child(odd) {
+  background-color: #2c3e50;
+}
+.historyTableBody tr:nth-child(even) {
+  background-color: #1e1e1e;
+}
+
+.resetButton {
+  background-color: #ff9800;
+  transition: background-color 0.3s ease, box-shadow 0.3s;
+}
+.resetButton:hover {
+  background-color: #e68900;
+  box-shadow: 0 0 2px #ff9800, 0 0 5px #ff9800, 0 0 8px #ff9800;
+}

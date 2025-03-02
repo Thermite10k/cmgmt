@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import getFormattedData from "../utils/getFormattedDate";
 
 const dataContext = createContext(1);
 
@@ -22,6 +23,7 @@ const initialState = {
     },
   },
   serviceStatus: {},
+  history: {},
   total: 0,
 };
 export const DataProvider = ({ children }) => {
@@ -33,11 +35,30 @@ export const DataProvider = ({ children }) => {
       ? savedData
       : initialState;
   });
+  const resetHistory = () => {
+    setStoredData((prevState) => ({
+      ...prevState,
+      history: {},
+    }));
+  };
   const resetData = () => {
     let statusArray = storedData.serviceStatus;
+    let history = storedData.history;
+    const services = storedData.services;
+    let today = getFormattedData();
+
+    history = {
+      ...history,
+      [today]: {
+        ...services,
+        total: storedData.total,
+      },
+    };
+
     setStoredData({
       ...initialState,
       serviceStatus: statusArray,
+      history: history,
     });
 
     localStorage.removeItem("saleStats");
@@ -47,7 +68,9 @@ export const DataProvider = ({ children }) => {
   }, [storedData]);
 
   return (
-    <dataContext.Provider value={{ storedData, setStoredData, resetData }}>
+    <dataContext.Provider
+      value={{ storedData, setStoredData, resetData, resetHistory }}
+    >
       {children}
     </dataContext.Provider>
   );

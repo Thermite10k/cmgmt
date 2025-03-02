@@ -6,6 +6,7 @@ import ServiceTable from "./components/ServiceTable/ServiceTable";
 import Button from "./components/UI/Button/Button";
 import Stats from "./components/Stats/Stats";
 import QuickView from "./components/QuickView/QuickView";
+import HistoryTable from "./components/HistoryTable/HistoryTable";
 
 function App() {
   const hourlyRate = 1100;
@@ -73,6 +74,7 @@ function App() {
       <QuickView />
       {data.length && data.map((obj, index) => <ServiceTable service={obj} />)}
       <Stats />
+      <HistoryTable />
     </div>
   );
 }
