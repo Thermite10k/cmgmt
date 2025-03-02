@@ -2,6 +2,7 @@ import { useContext } from "react";
 import classes from "./HistoryTable.module.css";
 import { dataContext } from "../../contexts/appContext";
 import getFormattedData from "../../utils/getFormattedDate.js";
+import { addCommaSeparator } from "../../utils/addCommaSeparator.js";
 import Button from "../UI/Button/Button.jsx";
 const HistoryTable = () => {
   const { storedData, resetHistory } = useContext(dataContext);
@@ -40,14 +41,16 @@ const HistoryTable = () => {
           {Object.keys(history).map((k, index) => (
             <tr className={classes.historyRow} key={index}>
               <td colSpan={"1"}>{k}</td>
-              <td>{history[k]["Tables"]["time"]}</td>
-              <td>{history[k]["Tables"]["extras"]}</td>
-              <td>{history[k]["Tables"]["total"]}</td>
-              <td>{history[k]["Play Stations"]["time"]}</td>
-              <td>{history[k]["Play Stations"]["extras"]}</td>
-              <td>{history[k]["Play Stations"]["total"]}</td>
-              <td>{history[k]["extras"]["total"]}</td>
-              <td>{history[k].total}</td>
+              <td>{addCommaSeparator(history[k]["Tables"]["time"])}</td>
+              <td>{addCommaSeparator(history[k]["Tables"]["extras"])}</td>
+              <td>{addCommaSeparator(history[k]["Tables"]["total"])}</td>
+              <td>{addCommaSeparator(history[k]["Play Stations"]["time"])}</td>
+              <td>
+                {addCommaSeparator(history[k]["Play Stations"]["extras"])}
+              </td>
+              <td>{addCommaSeparator(history[k]["Play Stations"]["total"])}</td>
+              <td>{addCommaSeparator(history[k]["extras"]["total"])}</td>
+              <td>{addCommaSeparator(history[k].total)}</td>
             </tr>
           ))}
         </tbody>
