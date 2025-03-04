@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import getFormattedData from "../utils/getFormattedDate";
+import { getIndex, resetIndex } from "../utils/index";
 
 const dataContext = createContext(1);
 
@@ -36,6 +37,7 @@ export const DataProvider = ({ children }) => {
       : initialState;
   });
   const resetHistory = () => {
+    resetIndex();
     setStoredData((prevState) => ({
       ...prevState,
       history: {},
@@ -46,11 +48,13 @@ export const DataProvider = ({ children }) => {
     let history = storedData.history;
     const services = storedData.services;
     let today = getFormattedData();
+    let indexOfHistory = getIndex();
 
     history = {
       ...history,
-      [today]: {
+      [indexOfHistory]: {
         ...services,
+        date: today,
         total: storedData.total,
       },
     };

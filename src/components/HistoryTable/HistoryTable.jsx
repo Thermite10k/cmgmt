@@ -19,6 +19,7 @@ const HistoryTable = () => {
       <table className={classes.historyTable} border={1}>
         <thead className={classes.historyTableHead}>
           <tr>
+            <th colSpan="1">#</th>
             <th colSpan="1">Date</th>
             <th colSpan="3">Tables</th>
             <th colSpan="3">Play Stations</th>
@@ -26,6 +27,7 @@ const HistoryTable = () => {
             <th>Total</th>
           </tr>
           <tr>
+            <th colSpan="1"></th>
             <th colSpan="1"></th>
             <th colSpan="1">Time</th>
             <th colSpan="1">Extra</th>
@@ -41,6 +43,7 @@ const HistoryTable = () => {
           {Object.keys(history).map((k, index) => (
             <tr className={classes.historyRow} key={index}>
               <td colSpan={"1"}>{k}</td>
+              {history[k]["date"] ? <td>{history[k]["date"]}</td> : <td> </td>}
               <td>{addCommaSeparator(history[k]["Tables"]["time"])}</td>
               <td>{addCommaSeparator(history[k]["Tables"]["extras"])}</td>
               <td>{addCommaSeparator(history[k]["Tables"]["total"])}</td>
