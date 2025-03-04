@@ -40,22 +40,49 @@ const HistoryTable = () => {
           </tr>
         </thead>
         <tbody className={classes.historyTableBody}>
-          {Object.keys(history).map((k, index) => (
-            <tr className={classes.historyRow} key={index}>
-              <td colSpan={"1"}>{k}</td>
-              {history[k]["date"] ? <td>{history[k]["date"]}</td> : <td> </td>}
-              <td>{addCommaSeparator(history[k]["Tables"]["time"])}</td>
-              <td>{addCommaSeparator(history[k]["Tables"]["extras"])}</td>
-              <td>{addCommaSeparator(history[k]["Tables"]["total"])}</td>
-              <td>{addCommaSeparator(history[k]["Play Stations"]["time"])}</td>
-              <td>
-                {addCommaSeparator(history[k]["Play Stations"]["extras"])}
-              </td>
-              <td>{addCommaSeparator(history[k]["Play Stations"]["total"])}</td>
-              <td>{addCommaSeparator(history[k]["extras"]["total"])}</td>
-              <td>{addCommaSeparator(history[k].total)}</td>
+          {Object.keys(history).map(
+            (k, index) =>
+              k >= 1 && (
+                <tr className={classes.historyRow} key={index}>
+                  <td colSpan={"1"}>{k}</td>
+                  {history[k]["date"] ? (
+                    <td>{history[k]["date"]}</td>
+                  ) : (
+                    <td> </td>
+                  )}
+                  <td>{addCommaSeparator(history[k]["Tables"]["time"])}</td>
+                  <td>{addCommaSeparator(history[k]["Tables"]["extras"])}</td>
+                  <td>{addCommaSeparator(history[k]["Tables"]["total"])}</td>
+                  <td>
+                    {addCommaSeparator(history[k]["Play Stations"]["time"])}
+                  </td>
+                  <td>
+                    {addCommaSeparator(history[k]["Play Stations"]["extras"])}
+                  </td>
+                  <td>
+                    {addCommaSeparator(history[k]["Play Stations"]["total"])}
+                  </td>
+                  <td>{addCommaSeparator(history[k]["extras"]["total"])}</td>
+                  <td>{addCommaSeparator(history[k].total)}</td>
+                </tr>
+              )
+          )}
+          {history.sum && (
+            <tr className={classes.historyRow}>
+              <td></td>
+              <td>SUM: </td>
+              <td>{addCommaSeparator(history.sum.tableTimeSum)}</td>
+              <td>{addCommaSeparator(history.sum.tableExtrasSum)}</td>
+              <td>{addCommaSeparator(history.sum.tableTotalSum)}</td>
+
+              <td>{addCommaSeparator(history.sum.playStationsTimeSum)}</td>
+              <td>{addCommaSeparator(history.sum.playStationsExtrasSum)}</td>
+              <td>{addCommaSeparator(history.sum.playStationsTotalSum)}</td>
+
+              <td>{addCommaSeparator(history.sum.extrasSum)}</td>
+              <td>{addCommaSeparator(history.sum.grandTotal)}</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
       <Button className={classes.resetButton} onClick={resetHandler}>

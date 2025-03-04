@@ -52,6 +52,28 @@ export const DataProvider = ({ children }) => {
 
     history = {
       ...history,
+      sum: {
+        tableTimeSum: (history.sum?.tableTimeSum || 0) + +services.Tables.time,
+        tableExtrasSum:
+          (history.sum?.tableExtrasSum || 0) + +services.Tables.extras,
+        tableTotalSum:
+          (history.sum?.tableTotalSum || 0) + +services.Tables.total,
+        playStationsTimeSum:
+          (history.sum?.playStationsTimeSum || 0) +
+          +services["Play Stations"].time,
+
+        playStationsExtrasSum:
+          (history.sum?.playStationsExtrasSum || 0) +
+          +services["Play Stations"].extras,
+
+        playStationsTotalSum:
+          (history.sum?.playStationsTotalSum || 0) +
+          +services["Play Stations"].total,
+
+        extrasSum: (history.sum?.extrasSum || 0) + +services.extras.total,
+        grandTotal: (history.sum?.grandTotal || 0) + +storedData.total,
+      },
+
       [indexOfHistory]: {
         ...services,
         date: today,
