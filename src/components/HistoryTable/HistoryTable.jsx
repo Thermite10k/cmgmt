@@ -42,7 +42,7 @@ const HistoryTable = () => {
         <tbody className={classes.historyTableBody}>
           {Object.keys(history).map(
             (k, index) =>
-              k >= 1 && (
+              k != "sum" && (
                 <tr className={classes.historyRow} key={index}>
                   <td colSpan={"1"}>{k}</td>
                   {history[k]["date"] ? (
