@@ -22,14 +22,14 @@ const Stats = () => {
     <div className={classes.statsContainer}>
       <div className={classes.stats}>
         <div className={classes.statList}>
-          {Object.keys(services).map((key) => (
-            <div className={classes.statsCard}>
+          {Object.keys(services).map((key, i) => (
+            <div key={i} className={classes.statsCard}>
               <div className={classes.statCardTitle}>{services[key].name}</div>
               <ul className={classes.statsUl}>
                 {Object.keys(services[key]).map(
-                  (k) =>
+                  (k, i) =>
                     k !== "name" && (
-                      <li className={classes.listItem}>
+                      <li key={i} className={classes.listItem}>
                         {capitalizeWords(k)} :{" "}
                         {addCommaSeparator(services[key][k])}
                       </li>

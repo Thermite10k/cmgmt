@@ -16,7 +16,7 @@ const Logs = () => {
     event.preventDefault();
     const data = new FormData(event.target);
     const pass = data.get("enteredPass");
-    console.log(pass);
+
     if (isAuthenticated === 0 && pass === "Admin9") {
       setIsAuthenticated(1);
     } else if (isAuthenticated) {
