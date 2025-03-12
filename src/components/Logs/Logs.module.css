@@ -1,0 +1,10 @@
+.logsFormsContainer {
+  background: linear-gradient(135deg, #1e1e1e, #2c3e50);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  gap: 1rem;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}

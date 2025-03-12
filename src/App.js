@@ -6,6 +6,7 @@ import ServiceTable from "./components/ServiceTable/ServiceTable";
 import Button from "./components/UI/Button/Button";
 import Stats from "./components/Stats/Stats";
 import QuickView from "./components/QuickView/QuickView";
+import Logs from "./components/Logs/Logs";
 import HistoryTable from "./components/HistoryTable/HistoryTable";
 
 function App() {
@@ -73,8 +74,7 @@ function App() {
       </center>
       <QuickView />
       {data.length && data.map((obj, index) => <ServiceTable service={obj} />)}
-      <Stats />
-      <HistoryTable />
+      <Logs />
     </div>
   );
 }

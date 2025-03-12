@@ -47,8 +47,8 @@ const Stats = () => {
         </Button>
       </div>
       <div className={classes.resetAndExtraContainer}>
-        <EditTimeTotal />
-        <SingleExtra />
+        {/* <EditTimeTotal />
+        <SingleExtra /> */}
       </div>
     </div>
   );
