@@ -49,6 +49,7 @@ export const DataProvider = ({ children }) => {
     const services = storedData.services;
     let today = getFormattedData();
     let indexOfHistory = getIndex();
+    indexOfHistory = indexOfHistory ? indexOfHistory : 1;
 
     history = {
       ...history,
