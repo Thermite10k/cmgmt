@@ -3,6 +3,7 @@ import classes from "./HistoryTable.module.css";
 import { dataContext } from "../../contexts/appContext";
 import getFormattedData from "../../utils/getFormattedDate.js";
 import { addCommaSeparator } from "../../utils/addCommaSeparator.js";
+import exportCSV from "../../utils/exportCSV.js";
 import Button from "../UI/Button/Button.jsx";
 const HistoryTable = () => {
   const { storedData, resetHistory } = useContext(dataContext);
@@ -12,6 +13,9 @@ const HistoryTable = () => {
     if (window.confirm("Do you want to reset the history?")) {
       resetHistory();
     }
+    const saveHistoryHandler = () => {
+      exportCSV();
+    };
   };
 
   return (
@@ -88,6 +92,7 @@ const HistoryTable = () => {
       <Button className={classes.resetButton} onClick={resetHandler}>
         Reset
       </Button>
+      {/* <Button onClick={() => exportCSV(history)}>Save</Button> */}
     </div>
   );
 };
