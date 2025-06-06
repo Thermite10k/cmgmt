@@ -10,5 +10,11 @@
     "name": "Play Station",
     "hourlyRate": 800000,
     "count": 4
+  },
+  "Snooker": {
+    "id": 2,
+    "name": "Snooker",
+    "hourlyRate": 1700000,
+    "count": 1
   }
 }

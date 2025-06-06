@@ -27,6 +27,7 @@ const HistoryTable = () => {
             <th colSpan="1">Date</th>
             <th colSpan="3">Tables</th>
             <th colSpan="3">Play Stations</th>
+            <th colSpan="3">Snooker</th>
             <th>Extras</th>
             <th>Total</th>
           </tr>
@@ -39,6 +40,10 @@ const HistoryTable = () => {
             <th>Time</th>
             <th>Extra</th>
             <th>Total</th>
+            <th>Time</th>
+            <th>Extra</th>
+            <th>Total</th>
+
             <th></th>
             <th></th>
           </tr>
@@ -66,6 +71,23 @@ const HistoryTable = () => {
                   <td>
                     {addCommaSeparator(history[k]["Play Stations"]["total"])}
                   </td>
+
+                  <td>
+                    {history[k].Snooker
+                      ? addCommaSeparator(history[k]["Snooker"]["time"])
+                      : 0}
+                  </td>
+                  <td>
+                    {history[k].Snooker
+                      ? addCommaSeparator(history[k]["Snooker"]["extras"])
+                      : 0}
+                  </td>
+                  <td>
+                    {history[k].Snooker
+                      ? addCommaSeparator(history[k]["Snooker"]["total"])
+                      : 0}
+                  </td>
+
                   <td>{addCommaSeparator(history[k]["extras"]["total"])}</td>
                   <td>{addCommaSeparator(history[k].total)}</td>
                 </tr>
@@ -82,6 +104,10 @@ const HistoryTable = () => {
               <td>{addCommaSeparator(history.sum.playStationsTimeSum)}</td>
               <td>{addCommaSeparator(history.sum.playStationsExtrasSum)}</td>
               <td>{addCommaSeparator(history.sum.playStationsTotalSum)}</td>
+
+              <td>{addCommaSeparator(history.sum.snookerTimeSum || 0)}</td>
+              <td>{addCommaSeparator(history.sum.snookerExtrasSum || 0)}</td>
+              <td>{addCommaSeparator(history.sum.snookerTotalSum || 0)}</td>
 
               <td>{addCommaSeparator(history.sum.extrasSum)}</td>
               <td>{addCommaSeparator(history.sum.grandTotal)}</td>

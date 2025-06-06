@@ -18,6 +18,12 @@ const initialState = {
       extras: 0,
       total: 0,
     },
+    Snooker: {
+      name: "Snooker",
+      time: 0,
+      extras: 0,
+      total: 0,
+    },
     extras: {
       name: "Extras",
       total: 0,
@@ -29,11 +35,18 @@ const initialState = {
 };
 export const DataProvider = ({ children }) => {
   const [storedData, setStoredData] = useState(() => {
-    const savedData = JSON.parse(localStorage.getItem("saleStats"));
+    const savedData = JSON.parse(localStorage.getItem("saleStats")) || {};
 
-    return savedData &&
-      Object.keys(savedData).length == Object.keys(initialState).length
+    const sameServiceLength =
+      Object.keys(savedData.services || {}).length ===
+      Object.keys(initialState.services).length;
+    const sameStoreLength =
+      Object.keys(savedData).length === Object.keys(initialState).length;
+
+    return savedData && sameServiceLength && sameStoreLength
       ? savedData
+      : savedData?.history
+      ? { ...initialState, history: savedData?.history }
       : initialState;
   });
   const resetHistory = () => {
@@ -70,6 +83,13 @@ export const DataProvider = ({ children }) => {
         playStationsTotalSum:
           (history.sum?.playStationsTotalSum || 0) +
           +services["Play Stations"].total,
+
+        snookerTimeSum:
+          (history.sum?.snookerTimeSum || 0) + +services.Snooker.time,
+        snookerExtrasSum:
+          (history.sum?.snookerExtrasSum || 0) + +services.Snooker.extras,
+        snookerTotalSum:
+          (history.sum?.snookerTotalSum || 0) + +services.Snooker.total,
 
         extrasSum: (history.sum?.extrasSum || 0) + +services.extras.total,
         grandTotal: (history.sum?.grandTotal || 0) + +storedData.total,
