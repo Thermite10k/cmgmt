@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Timer from "../Timer/Timer";
 import classes from "./ServiceTable.module.css";
 import { dataContext } from "../../contexts/appContext";
+import { backgrounds } from "./backgroundMap";
 
 const ServiceTable = ({ service }) => {
   const { storedData, setStoredData } = useContext(dataContext);
@@ -21,10 +22,10 @@ const ServiceTable = ({ service }) => {
   return (
     <div className={classes.relativeContainer}>
       <div
-        style={{ backgroundImage: `url(${console})` }}
-        className={`${
-          service.key === "Tables" ? classes.table : classes.console
-        } ${classes.backgroundEffect} `}
+        // style={{ backgroundImage: `url(${console})` }}
+        className={`${classes[[backgrounds[service.id]]] || "table"} ${
+          classes.backgroundEffect
+        } `}
       />
 
       <div className={classes.serviceContainer}>

@@ -42,7 +42,7 @@ export const DataProvider = ({ children }) => {
       Object.keys(initialState.services).length;
     const sameStoreLength =
       Object.keys(savedData).length === Object.keys(initialState).length;
-
+    // Adding backward compatibility with old stores
     return savedData && sameServiceLength && sameStoreLength
       ? savedData
       : savedData?.history
