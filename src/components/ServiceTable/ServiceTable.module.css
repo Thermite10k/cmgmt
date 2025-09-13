@@ -47,3 +47,6 @@
 .snooker {
   background-image: url("snooker.jpg");
 }
+.snookerWidth {
+  width: 20%;
+}

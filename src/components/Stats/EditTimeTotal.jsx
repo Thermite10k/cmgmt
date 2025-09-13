@@ -42,6 +42,7 @@ const EditTimeTotal = () => {
             <option value={"Tables"}>Tables</option>
             <option value={"Play Stations"}>Play Stations</option>
             <option value={"Snooker"}>Snooker</option>
+            <option value={"Message Chair"}>Message Chair</option>
           </select>
         </label>
         <label>

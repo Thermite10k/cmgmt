@@ -33,6 +33,7 @@ function App() {
       for (const key in data) {
         loadedData.push({
           id: data[key].id,
+          render: data[key].render,
           key: key,
           name: data[key].name,
           hourlyRate: data[key].hourlyRate,
@@ -66,7 +67,7 @@ function App() {
       window.removeEventListener("beforeunload", reloadHandler);
     };
   }, []);
-
+  console.log(data);
   return (
     <div className={classes.app}>
       <center>
@@ -74,6 +75,13 @@ function App() {
       </center>
       <QuickView />
       {data.length && data.map((obj, index) => <ServiceTable service={obj} />)}
+      {data.length && data[3] && data[2] && (
+        <div className={classes.miniContainer}>
+          <ServiceTable service={data[2]} shouldRender={1} />
+          <ServiceTable service={data[3]} shouldRender={1} />
+        </div>
+      )}
+
       <Logs />
     </div>
   );

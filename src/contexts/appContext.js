@@ -24,6 +24,12 @@ const initialState = {
       extras: 0,
       total: 0,
     },
+    "Message Chair": {
+      name: "Message Chair",
+      time: 0,
+      extras: 0,
+      total: 0,
+    },
     extras: {
       name: "Extras",
       total: 0,
@@ -90,6 +96,16 @@ export const DataProvider = ({ children }) => {
           (history.sum?.snookerExtrasSum || 0) + +services.Snooker.extras,
         snookerTotalSum:
           (history.sum?.snookerTotalSum || 0) + +services.Snooker.total,
+
+        messageChairTimeSum:
+          (history.sum?.messageChairTimeSum || 0) +
+          +services["Message Chair"].time,
+        messageChairExtrasSum:
+          (history.sum?.messageChairExtrasSum || 0) +
+          +services["Message Chair"].extras,
+        messageChairTotalSum:
+          (history.sum?.messageChairTotalSum || 0) +
+          +services["Message Chair"].total,
 
         extrasSum: (history.sum?.extrasSum || 0) + +services.extras.total,
         grandTotal: (history.sum?.grandTotal || 0) + +storedData.total,

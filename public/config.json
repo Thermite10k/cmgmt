@@ -1,20 +1,30 @@
 {
   "Tables": {
+    "render": 1,
     "id": 0,
     "name": "Table",
     "hourlyRate": 1400000,
     "count": 5
   },
   "Play Stations": {
+    "render": 1,
     "id": 1,
     "name": "Play Station",
     "hourlyRate": 800000,
     "count": 4
   },
   "Snooker": {
+    "render": 0,
     "id": 2,
     "name": "Snooker",
     "hourlyRate": 1700000,
+    "count": 1
+  },
+  "Message Chair": {
+    "render": 0,
+    "id": 3,
+    "name": "Message Chair",
+    "hourlyRate": 2400000,
     "count": 1
   }
 }

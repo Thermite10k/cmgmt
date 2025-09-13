@@ -46,3 +46,7 @@ h1 {
   padding: 0;
   margin: 0;
 }
+.miniContainer {
+  display: flex;
+  gap: 1rem;
+}

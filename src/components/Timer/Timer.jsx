@@ -7,6 +7,7 @@ import { addCommaSeparator } from "../../utils/addCommaSeparator";
 import { dataContext } from "../../contexts/appContext";
 import Input from "../UI/Input/Input";
 import roundRials from "../../utils/roundRials";
+import { backgrounds as serviceName } from "../ServiceTable/backgroundMap";
 const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
@@ -166,7 +167,7 @@ const Timer = ({ rate, title, index, id, serviceKey, statusHandle }) => {
   };
 
   return (
-    <div className={classes.timerContainer}>
+    <div className={`${classes.timerContainer} ${classes[serviceName[id]]}`}>
       <div className={`${classes.titleContainer}`}>
         <div>
           {title} #{index}
