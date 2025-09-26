@@ -52,9 +52,9 @@ const Logs = () => {
           <SingleExtra />
         </div>
       </div>
+      <Stats />
       {isAuthenticated ? (
         <div>
-          <Stats />
           <HistoryTable />
         </div>
       ) : (
