@@ -14,17 +14,10 @@
     "count": 4
   },
   "Snooker": {
-    "render": 0,
+    "render": 1,
     "id": 2,
     "name": "Snooker",
     "hourlyRate": 1900000,
-    "count": 1
-  },
-  "Message Chair": {
-    "render": 0,
-    "id": 3,
-    "name": "Message Chair",
-    "hourlyRate": 2700000,
     "count": 1
   }
 }

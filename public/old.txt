@@ -1,0 +1,8 @@
+
+"Message Chair": {
+  "render": -1,
+  "id": 2,
+  "name": "Message Chair",
+  "hourlyRate": 2699999,
+  "count": 0
+}

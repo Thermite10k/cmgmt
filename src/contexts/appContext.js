@@ -24,12 +24,6 @@ const initialState = {
       extras: 0,
       total: 0,
     },
-    "Message Chair": {
-      name: "Message Chair",
-      time: 0,
-      extras: 0,
-      total: 0,
-    },
     extras: {
       name: "Extras",
       total: 0,
@@ -39,10 +33,15 @@ const initialState = {
   history: {},
   total: 0,
 };
+// "Message Chair": {
+//   name: "Message Chair",
+//   time: 0,
+//   extras: 0,
+//   total: 0,
+// },
 export const DataProvider = ({ children }) => {
   const [storedData, setStoredData] = useState(() => {
     const savedData = JSON.parse(localStorage.getItem("saleStats")) || {};
-
     const sameServiceLength =
       Object.keys(savedData.services || {}).length ===
       Object.keys(initialState.services).length;
@@ -52,9 +51,10 @@ export const DataProvider = ({ children }) => {
     return savedData && sameServiceLength && sameStoreLength
       ? savedData
       : savedData?.history
-      ? { ...initialState, history: savedData?.history }
-      : initialState;
+        ? { ...initialState, history: savedData?.history }
+        : initialState;
   });
+  console.log("hey");
   const resetHistory = () => {
     resetIndex();
     setStoredData((prevState) => ({
@@ -97,15 +97,15 @@ export const DataProvider = ({ children }) => {
         snookerTotalSum:
           (history.sum?.snookerTotalSum || 0) + +services.Snooker.total,
 
-        messageChairTimeSum:
-          (history.sum?.messageChairTimeSum || 0) +
-          +services["Message Chair"].time,
-        messageChairExtrasSum:
-          (history.sum?.messageChairExtrasSum || 0) +
-          +services["Message Chair"].extras,
-        messageChairTotalSum:
-          (history.sum?.messageChairTotalSum || 0) +
-          +services["Message Chair"].total,
+        // messageChairTimeSum:
+        //   (history.sum?.messageChairTimeSum || 0) +
+        //   +services["Message Chair"].time,
+        // messageChairExtrasSum:
+        //   (history.sum?.messageChairExtrasSum || 0) +
+        //   +services["Message Chair"].extras,
+        // messageChairTotalSum:
+        //   (history.sum?.messageChairTotalSum || 0) +
+        //   +services["Message Chair"].total,
 
         extrasSum: (history.sum?.extrasSum || 0) + +services.extras.total,
         grandTotal: (history.sum?.grandTotal || 0) + +storedData.total,

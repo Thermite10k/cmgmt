@@ -28,7 +28,7 @@ const HistoryTable = () => {
             <th colSpan="3">Tables</th>
             <th colSpan="3">Play Stations</th>
             <th colSpan="3">Snooker</th>
-            <th colSpan="3">Message Chair</th>
+            {/* <th colSpan="3">Message Chair</th> */}
             <th>Extras</th>
             <th>Total</th>
           </tr>
@@ -45,9 +45,9 @@ const HistoryTable = () => {
             <th>Extra</th>
             <th>Total</th>
 
-            <th>Time</th>
+            {/* <th>Time</th>
             <th>Extra</th>
-            <th>Total</th>
+            <th>Total</th> */}
 
             <th></th>
             <th></th>
@@ -91,7 +91,7 @@ const HistoryTable = () => {
                       ? addCommaSeparator(history[k]["Snooker"]["total"])
                       : 0}
                   </td>
-                  <td>
+                  {/* <td>
                     {history[k]["Message Chair"]
                       ? addCommaSeparator(history[k]["Message Chair"]["time"])
                       : 0}
@@ -105,12 +105,12 @@ const HistoryTable = () => {
                     {history[k]["Message Chair"]
                       ? addCommaSeparator(history[k]["Message Chair"]["total"])
                       : 0}
-                  </td>
+                  </td> */}
 
                   <td>{addCommaSeparator(history[k]["extras"]["total"])}</td>
                   <td>{addCommaSeparator(history[k].total)}</td>
                 </tr>
-              )
+              ),
           )}
           {history.sum && (
             <tr className={classes.historyRow}>
@@ -127,14 +127,14 @@ const HistoryTable = () => {
               <td>{addCommaSeparator(history.sum.snookerTimeSum || 0)}</td>
               <td>{addCommaSeparator(history.sum.snookerExtrasSum || 0)}</td>
               <td>{addCommaSeparator(history.sum.snookerTotalSum || 0)}</td>
-
+              {/* 
               <td>{addCommaSeparator(history.sum.messageChairTimeSum || 0)}</td>
               <td>
                 {addCommaSeparator(history.sum.messageChairExtrasSum || 0)}
               </td>
               <td>
                 {addCommaSeparator(history.sum.messageChairTotalSum || 0)}
-              </td>
+              </td> */}
 
               <td>{addCommaSeparator(history.sum.extrasSum)}</td>
               <td>{addCommaSeparator(history.sum.grandTotal)}</td>
